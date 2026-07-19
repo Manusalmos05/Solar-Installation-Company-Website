@@ -281,7 +281,7 @@ export default function App() {
     setSubmitted(true);
   }
 
-  const NAV = ["Inicio", "Servicios", "Proyectos", "Opiniones", "Contacto"];
+  const NAV = ["Inicio", "Servicios", "Proyectos", "Kits solares & Domótica", "Contacto"];
 
   return (
     <div className="min-h-screen bg-background text-foreground" style={{ fontFamily: "'Inter', sans-serif" }}>
