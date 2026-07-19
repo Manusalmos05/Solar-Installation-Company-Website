@@ -10,6 +10,10 @@ import { STEPS } from "../data/steps.ts";
 import { PROJECTS } from "../data/projects.ts";
 import { FAQS } from "../data/faqs.ts";
 import Navbar from "../sections/Navbar.tsx";
+import HeroSection from "../sections/HeroSection.tsx";
+import BenefitsSection from "../sections/BenefitsSection.tsx";
+import ServicesSection from "../sections/ServicesSection.tsx";
+import HowWeWorkSection from "../sections/HowWeWorkSection.tsx";
 
 
 
@@ -179,14 +183,14 @@ export default function App() {
       {/* Floating CTAs */}
       <div className="fixed bottom-6 right-4 z-50 flex flex-col gap-3" style={{ bottom: cookieAccepted ? "1.5rem" : "5.5rem" }}>
         <a
-          href="tel:+34900123456"
+          href="tel:+34624890494"
           className="w-12 h-12 rounded-full bg-primary text-primary-foreground flex items-center justify-center shadow-lg hover:scale-110 transition-transform"
           title="Llamar ahora"
         >
           <Phone size={18} />
         </a>
         <a
-          href="https://wa.me/34600000000"
+          href="https://wa.me/34624890494"
           className="w-12 h-12 rounded-full bg-accent text-accent-foreground flex items-center justify-center shadow-lg hover:scale-110 transition-transform"
           title="WhatsApp"
         >
@@ -197,141 +201,18 @@ export default function App() {
 
 
       {/* HERO */}
-      <section id="inicio" className="relative min-h-screen flex items-center pt-16">
-        <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: `url(https://images.unsplash.com/photo-1509391366360-2e959784a276?w=1800&h=1100&fit=crop&auto=format)` }}
-        />
-        <div className="absolute inset-0 bg-gradient-to-r from-primary/90 via-primary/70 to-primary/20" />
-        <div className="absolute inset-0 bg-gradient-to-t from-primary/50 via-transparent to-transparent" />
+      <HeroSection />
 
-        <div className="relative z-10 max-w-7xl mx-auto px-5 py-28">
-          <div className="max-w-2xl">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 border border-white/20 text-white/90 text-xs font-medium mb-6 tracking-wide">
-              <Zap size={11} className="text-accent" /> Instalador certificado — Alicante · Murcia · Vega Baja
-            </div>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-[1.1] mb-5 tracking-tight">
-              Instalación de Placas Solares en{" "}
-              <span className="text-accent">Alicante, Murcia</span> y Vega Baja
-            </h1>
-            <p className="text-lg md:text-xl text-white/80 leading-relaxed mb-8 max-w-xl">
-              Reduce hasta un <strong className="text-white">80%</strong> tu factura eléctrica con energía solar, domótica y movilidad eléctrica. Sin compromiso.
-            </p>
-            <div className="flex flex-wrap gap-3">
-              <a
-                href="#contacto"
-                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-accent text-white font-bold text-sm hover:opacity-90 transition-opacity shadow-lg"
-              >
-                Solicitar presupuesto gratuito <ArrowRight size={15} />
-              </a>
-              <a
-                href="tel:+34900123456"
-                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-white/10 border border-white/30 text-white font-semibold text-sm hover:bg-white/20 transition-colors"
-              >
-                <Phone size={14} /> Llamar ahora
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* BENEFITS */}
-      <section className="bg-secondary py-10 border-b border-border">
-        <div className="max-w-7xl mx-auto px-5">
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
-            {BENEFITS.map(({ icon: Icon, label }) => (
-              <div key={label} className="flex flex-col items-center text-center gap-2.5">
-                <div className="w-11 h-11 rounded-xl bg-accent/10 flex items-center justify-center">
-                  <Icon size={18} className="text-accent" />
-                </div>
-                <span className="text-xs font-semibold text-foreground">{label}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <BenefitsSection />
+
 
       {/* SERVICES */}
-      <section id="servicios" className="py-24">
-        <div className="max-w-7xl mx-auto px-5">
-          <div className="text-center mb-14">
-            <p className="text-accent text-xs font-semibold tracking-widest uppercase mb-3">Nuestros servicios</p>
-            <h2 className="text-3xl md:text-4xl font-extrabold text-foreground mb-4">
-              Soluciones de energía solar completas
-            </h2>
-            <p className="text-muted-foreground text-base max-w-xl mx-auto">
-              De la instalación de placas solares a la domótica inteligente. Todo gestionado por nuestro equipo propio en Alicante y Murcia.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {SERVICES.map((s) => (
-              <div
-                key={s.title}
-                className="group rounded-2xl border border-border overflow-hidden hover:shadow-md hover:border-accent/30 transition-all duration-300 bg-white"
-              >
-                <div className="relative h-48 bg-secondary overflow-hidden">
-                  <img
-                    src={`https://images.unsplash.com/${s.img}?w=600&h=380&fit=crop&auto=format`}
-                    alt={s.title}
-                    loading="lazy"
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
-                  <div className="absolute bottom-3 left-3 w-9 h-9 rounded-xl bg-accent flex items-center justify-center">
-                    <s.icon size={16} className="text-white" />
-                  </div>
-                </div>
-                <div className="p-5">
-                  <h3 className="font-bold text-base mb-2">{s.title}</h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed mb-4">{s.desc}</p>
-                  <a
-                    href="#contacto"
-                    className="inline-flex items-center gap-1 text-accent text-xs font-semibold hover:gap-2 transition-all"
-                  >
-                    {s.cta} <ArrowRight size={12} />
-                  </a>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <ServicesSection />
 
       {/* HOW WE WORK */}
-      <section className="py-24 bg-primary text-primary-foreground">
-        <div className="max-w-7xl mx-auto px-5">
-          <div className="text-center mb-14">
-            <p className="text-accent text-xs font-semibold tracking-widest uppercase mb-3">Cómo trabajamos</p>
-            <h2 className="text-3xl md:text-4xl font-extrabold mb-4">De la consulta a la puesta en marcha</h2>
-            <p className="text-white/70 text-base max-w-lg mx-auto">
-              Proceso transparente y sin burocracia para ti. Nos ocupamos de todo.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {STEPS.map((step) => (
-              <div key={step.num} className="flex gap-4">
-                <div className="flex-shrink-0 w-10 h-10 rounded-full border border-accent/50 flex items-center justify-center text-accent text-xs font-bold">
-                  {step.num}
-                </div>
-                <div>
-                  <h4 className="font-bold text-sm mb-1 text-white">{step.title}</h4>
-                  <p className="text-white/60 text-sm leading-relaxed">{step.body}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <div className="mt-12 text-center">
-            <a
-              href="#contacto"
-              className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-accent text-white font-bold text-sm hover:opacity-90 transition-opacity"
-            >
-              Solicitar estudio energético gratuito <ArrowRight size={14} />
-            </a>
-          </div>
-        </div>
-      </section>
+      <HowWeWorkSection />
 
       {/* PROJECTS */}
       <section id="proyectos" className="py-24">
