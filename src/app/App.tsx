@@ -4,171 +4,28 @@ import {
   Menu, X, Check, ChevronDown, ChevronUp, ArrowRight, Zap,
    Clock,  MessageCircle, Lock
 } from "lucide-react";
-import { SERVICES } from "../data/services.ts";
-import { BENEFITS } from "../data/benefits.ts";
-import { STEPS } from "../data/steps.ts";
-import { PROJECTS } from "../data/projects.ts";
-import { FAQS } from "../data/faqs.ts";
+
 import Navbar from "../sections/Navbar.tsx";
 import HeroSection from "../sections/HeroSection.tsx";
 import BenefitsSection from "../sections/BenefitsSection.tsx";
 import ServicesSection from "../sections/ServicesSection.tsx";
 import HowWeWorkSection from "../sections/HowWeWorkSection.tsx";
-
-
-
-// ─── Sub-components ───────────────────────────────────────────────────────────
-
-
-function CookieBanner({ onAccept, onConfig }: { onAccept: () => void; onConfig: () => void }) {
-  return (
-    <div className="fixed bottom-0 left-0 right-0 z-[100] bg-primary text-primary-foreground p-4 md:p-5 shadow-2xl">
-      <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-start md:items-center gap-4 justify-between">
-        <div className="flex items-start gap-3">
-          <Lock size={18} className="mt-0.5 flex-shrink-0 text-accent" />
-          <p className="text-sm leading-relaxed opacity-90">
-            Utilizamos cookies propias y de terceros para mejorar tu experiencia, analizar el tráfico y personalizar el contenido.
-            Puedes aceptarlas todas o configurar tus preferencias.{" "}
-            <a href="#" className="underline hover:text-accent transition-colors">Política de cookies</a>.
-          </p>
-        </div>
-        <div className="flex gap-3 flex-shrink-0">
-          <button onClick={onConfig} className="px-4 py-2 rounded-lg border border-white/30 text-xs hover:bg-white/10 transition-colors">
-            Configurar
-          </button>
-          <button onClick={onAccept} className="px-5 py-2 rounded-lg bg-accent text-accent-foreground text-xs font-semibold hover:opacity-90 transition-opacity">
-            Aceptar todas
-          </button>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function Calculator() {
-  const [gasto, setGasto] = useState(120);
-  const [provincia, setProvincia] = useState("Alicante");
-  const [tipo, setTipo] = useState("unifamiliar");
-  const [resultado, setResultado] = useState<null | { ahorro: number; paneles: number; amortizacion: number }>(null);
-
-  function calcular() {
-    const factor = provincia === "Murcia" ? 0.78 : 0.75;
-    const bonus = tipo === "unifamiliar" ? 1 : tipo === "adosado" ? 0.9 : 0.85;
-    const ahorro = Math.round(gasto * factor * bonus * 12);
-    const paneles = tipo === "comunidad" ? 24 : gasto > 200 ? 12 : gasto > 100 ? 8 : 5;
-    const inversion = paneles * 450;
-    const amortizacion = Math.round((inversion / ahorro) * 10) / 10;
-    setResultado({ ahorro, paneles, amortizacion });
-  }
-
-  return (
-    <div className="bg-white rounded-2xl border border-border p-6 md:p-8 shadow-sm">
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-        <div>
-          <label className="block text-xs font-medium text-muted-foreground mb-2 uppercase tracking-wide">Gasto mensual (€)</label>
-          <input
-            type="number"
-            min={30}
-            max={2000}
-            value={gasto}
-            onChange={(e) => setGasto(Number(e.target.value))}
-            className="w-full px-4 py-3 rounded-xl border border-border bg-secondary text-foreground text-sm focus:outline-none focus:border-accent transition-colors"
-          />
-        </div>
-        <div>
-          <label className="block text-xs font-medium text-muted-foreground mb-2 uppercase tracking-wide">Provincia</label>
-          <select
-            value={provincia}
-            onChange={(e) => setProvincia(e.target.value)}
-            className="w-full px-4 py-3 rounded-xl border border-border bg-secondary text-foreground text-sm focus:outline-none focus:border-accent transition-colors"
-          >
-            <option>Alicante</option>
-            <option>Murcia</option>
-            <option>Vega Baja</option>
-          </select>
-        </div>
-        <div>
-          <label className="block text-xs font-medium text-muted-foreground mb-2 uppercase tracking-wide">Tipo de vivienda</label>
-          <select
-            value={tipo}
-            onChange={(e) => setTipo(e.target.value)}
-            className="w-full px-4 py-3 rounded-xl border border-border bg-secondary text-foreground text-sm focus:outline-none focus:border-accent transition-colors"
-          >
-            <option value="unifamiliar">Unifamiliar / Chalet</option>
-            <option value="adosado">Adosado</option>
-            <option value="comunidad">Comunidad de propietarios</option>
-          </select>
-        </div>
-      </div>
-      <button
-        onClick={calcular}
-        className="w-full py-3.5 rounded-xl bg-accent text-accent-foreground font-semibold text-sm hover:opacity-90 transition-opacity mb-6"
-      >
-        Calcular mi ahorro estimado
-      </button>
-
-      {resultado && (
-        <div className="grid grid-cols-3 gap-4 p-5 rounded-xl bg-accent/5 border border-accent/20">
-          <div className="text-center">
-            <div className="text-3xl font-bold text-accent mb-1">{resultado.ahorro.toLocaleString("es-ES")} €</div>
-            <div className="text-xs text-muted-foreground">Ahorro anual estimado</div>
-          </div>
-          <div className="text-center border-x border-accent/20">
-            <div className="text-3xl font-bold text-foreground mb-1">{resultado.paneles}</div>
-            <div className="text-xs text-muted-foreground">Paneles recomendados</div>
-          </div>
-          <div className="text-center">
-            <div className="text-3xl font-bold text-foreground mb-1">{resultado.amortizacion} años</div>
-            <div className="text-xs text-muted-foreground">Amortización estimada</div>
-          </div>
-        </div>
-      )}
-      <p className="text-xs text-muted-foreground text-center mt-3">
-        Cálculo orientativo. Solicita un estudio personalizado gratuito para una cifra exacta.
-      </p>
-    </div>
-  );
-}
-
-function FaqItem({ q, a }: { q: string; a: string }) {
-  const [open, setOpen] = useState(false);
-  return (
-    <div className="border-b border-border last:border-0">
-      <button
-        onClick={() => setOpen(!open)}
-        className="w-full flex items-center justify-between gap-4 py-5 text-left"
-      >
-        <span className="text-sm font-semibold text-foreground">{q}</span>
-        {open ? <ChevronUp size={16} className="text-accent flex-shrink-0" /> : <ChevronDown size={16} className="text-muted-foreground flex-shrink-0" />}
-      </button>
-      {open && (
-        <div className="pb-5">
-          <p className="text-sm text-muted-foreground leading-relaxed">{a}</p>
-        </div>
-      )}
-    </div>
-  );
-}
+import ProjectsSection from "../sections/ProjectsSection.tsx";
+import CalculatorSection from "../sections/CalculatorSection.tsx"
+import FqaSection from "../sections/FaqSection.tsx";
+import ContactSection from "../sections/ContactSection.tsx";
+import FooterSection from "../sections/FooterSection.tsx";
+import CookieBanner from "../app/components/CookieBanner";
 
 // ─── Main ─────────────────────────────────────────────────────────────────────
 
 export default function App() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [cookieAccepted, setCookieAccepted] = useState(false);
-  const [formData, setFormData] = useState({
-    nombre: "", telefono: "", email: "", localidad: "", mensaje: "", privacidad: false,
-  });
-  const [submitted, setSubmitted] = useState(false);
-
-  function handleSubmit(e: React.FormEvent) {
-    e.preventDefault();
-    if (!formData.privacidad) return;
-    setSubmitted(true);
-  }
-
-
   return (
     <div className="min-h-screen bg-background text-foreground" style={{ fontFamily: "'Inter', sans-serif" }}>
+
+
       {/* Navbar */}
         <Navbar 
         menuOpen={menuOpen}
@@ -198,15 +55,11 @@ export default function App() {
         </a>
       </div>
 
-
-
       {/* HERO */}
       <HeroSection />
 
-
       {/* BENEFITS */}
       <BenefitsSection />
-
 
       {/* SERVICES */}
       <ServicesSection />
@@ -215,278 +68,21 @@ export default function App() {
       <HowWeWorkSection />
 
       {/* PROJECTS */}
-      <section id="proyectos" className="py-24">
-        <div className="max-w-7xl mx-auto px-5">
-          <div className="text-center mb-14">
-            <p className="text-accent text-xs font-semibold tracking-widest uppercase mb-3">Proyectos realizados</p>
-            <h2 className="text-3xl md:text-4xl font-extrabold mb-4">Más de 1.200 instalaciones en Alicante y Murcia</h2>
-            <p className="text-muted-foreground text-base max-w-lg mx-auto">
-              Instalaciones fotovoltaicas residenciales, comunidades de propietarios y naves industriales.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-            {PROJECTS.map((p, i) => (
-              <div
-                key={p.label}
-                className={`relative group overflow-hidden rounded-2xl bg-secondary ${i === 0 ? "md:col-span-1 md:row-span-2" : ""}`}
-                style={{ height: i === 0 ? undefined : "200px" }}
-              >
-                <img
-                  src={`https://images.unsplash.com/${p.img}?w=700&h=500&fit=crop&auto=format`}
-                  alt={p.label}
-                  loading="lazy"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  style={{ height: i === 0 ? "420px" : "200px" }}
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-primary/80 via-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                <div className="absolute bottom-0 left-0 right-0 p-4 translate-y-2 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-300">
-                  <p className="text-white text-xs font-semibold">{p.label}</p>
-                  <p className="text-accent text-xs">{p.kw}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
+      <ProjectsSection />
 
       {/* CALCULATOR */}
-      <section className="py-24">
-        <div className="max-w-7xl mx-auto px-5">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
-            <div>
-              <p className="text-accent text-xs font-semibold tracking-widest uppercase mb-3">Calculadora de ahorro</p>
-              <h2 className="text-3xl md:text-4xl font-extrabold mb-5">¿Cuánto puedes ahorrar con la energía solar?</h2>
-              <p className="text-muted-foreground leading-relaxed mb-6">
-                Introduce tu gasto mensual en electricidad, tu provincia y el tipo de vivienda. Te mostramos un estimado inmediato.
-                Para un cálculo exacto, solicita tu auditoría gratuita.
-              </p>
-              <div className="flex flex-wrap gap-4 text-sm text-muted-foreground">
-                {["placas solares Alicante", "autoconsumo Murcia", "energía solar Vega Baja"].map((kw) => (
-                  <span key={kw} className="px-3 py-1 rounded-full bg-secondary border border-border text-xs">{kw}</span>
-                ))}
-              </div>
-            </div>
-            <Calculator />
-          </div>
-        </div>
-      </section>
+      <CalculatorSection />
 
       {/* FAQ */}
-      <section className="py-24 bg-secondary">
-        <div className="max-w-4xl mx-auto px-5">
-          <div className="text-center mb-12">
-            <p className="text-accent text-xs font-semibold tracking-widest uppercase mb-3">Preguntas frecuentes</p>
-            <h2 className="text-3xl md:text-4xl font-extrabold mb-4">Todo lo que necesitas saber</h2>
-            <p className="text-muted-foreground text-base">Sobre placas solares, subvenciones, baterías, cargadores y domótica en Alicante y Murcia.</p>
-          </div>
-
-          <div className="bg-white rounded-2xl border border-border px-6 divide-y divide-border">
-            {FAQS.map((faq) => (
-              <FaqItem key={faq.q} q={faq.q} a={faq.a} />
-            ))}
-          </div>
-        </div>
-      </section>
+      <FqaSection />
 
       {/* CONTACT */}
-      <section id="contacto" className="py-24">
-        <div className="max-w-7xl mx-auto px-5">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 items-start">
-
-            <div>
-              <p className="text-accent text-xs font-semibold tracking-widest uppercase mb-3">Contacto</p>
-              <h2 className="text-3xl md:text-4xl font-extrabold mb-5">
-                Solicita tu <span className="text-accent">presupuesto gratuito</span>
-              </h2>
-              <p className="text-muted-foreground leading-relaxed mb-8">
-                Sin compromiso. Te contactamos en menos de 24 horas con un estudio personalizado para tu vivienda o comunidad en Alicante, Murcia o la Vega Baja.
-              </p>
-
-              <div className="space-y-4 mb-8">
-                {[
-                  { Icon: Phone, label: "900 123 456 (gratuito)", href: "tel:+34900123456" },
-                  { Icon: MessageCircle, label: "WhatsApp: 600 000 000", href: "https://wa.me/34600000000" },
-                  { Icon: Mail, label: "info@solpure.es", href: "mailto:info@solpure.es" },
-                  { Icon: MapPin, label: "Alicante · Murcia · Vega Baja del Segura", href: "#" },
-                  { Icon: Clock, label: "Lun–Vie 8:30–18:30 · Sáb 9:00–14:00", href: "#" },
-                ].map(({ Icon, label, href }) => (
-                  <a key={label} href={href} className="flex items-center gap-3 text-sm text-foreground hover:text-accent transition-colors">
-                    <div className="w-9 h-9 rounded-xl bg-accent/10 flex items-center justify-center flex-shrink-0">
-                      <Icon size={15} className="text-accent" />
-                    </div>
-                    {label}
-                  </a>
-                ))}
-              </div>
-
-              <div className="rounded-xl border border-border p-4 bg-secondary text-xs text-muted-foreground">
-                <p className="font-semibold text-foreground mb-1">Zonas de trabajo</p>
-                <p>Provincia de Alicante · Provincia de Murcia · Vega Baja del Segura · Orihuela · Torrevieja · Elche · Benidorm · Altea · Dénia · Cartagena · Lorca · Mazarrón</p>
-              </div>
-            </div>
-
-            <div className="bg-white rounded-2xl border border-border p-7 shadow-sm">
-              {submitted ? (
-                <div className="flex flex-col items-center text-center gap-4 py-10">
-                  <div className="w-16 h-16 rounded-full bg-accent/10 flex items-center justify-center">
-                    <Check size={28} className="text-accent" />
-                  </div>
-                  <h3 className="text-xl font-bold">¡Solicitud recibida!</h3>
-                  <p className="text-muted-foreground text-sm max-w-xs">
-                    Te contactaremos en menos de 24 horas con tu presupuesto personalizado. ¡Gracias por confiar en SolPure!
-                  </p>
-                  <button onClick={() => { setSubmitted(false); setFormData({ nombre: "", telefono: "", email: "", localidad: "", mensaje: "", privacidad: false }); }} className="text-xs text-accent hover:underline mt-2">
-                    Enviar otra consulta
-                  </button>
-                </div>
-              ) : (
-                <form onSubmit={handleSubmit} className="space-y-4">
-                  <h3 className="font-bold text-lg mb-5">Solicitar presupuesto</h3>
-
-                  <div className="grid grid-cols-2 gap-3">
-                    <div>
-                      <label className="block text-xs font-medium text-muted-foreground mb-1.5 uppercase tracking-wide">Nombre *</label>
-                      <input
-                        required
-                        value={formData.nombre}
-                        onChange={(e) => setFormData({ ...formData, nombre: e.target.value })}
-                        placeholder="Ana García"
-                        className="w-full px-3 py-2.5 rounded-xl border border-border bg-secondary text-foreground placeholder-muted-foreground text-sm focus:outline-none focus:border-accent transition-colors"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-xs font-medium text-muted-foreground mb-1.5 uppercase tracking-wide">Teléfono *</label>
-                      <input
-                        required
-                        value={formData.telefono}
-                        onChange={(e) => setFormData({ ...formData, telefono: e.target.value })}
-                        placeholder="600 000 000"
-                        className="w-full px-3 py-2.5 rounded-xl border border-border bg-secondary text-foreground placeholder-muted-foreground text-sm focus:outline-none focus:border-accent transition-colors"
-                      />
-                    </div>
-                  </div>
-
-                  <div>
-                    <label className="block text-xs font-medium text-muted-foreground mb-1.5 uppercase tracking-wide">Email *</label>
-                    <input
-                      required
-                      type="email"
-                      value={formData.email}
-                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      placeholder="ana@email.com"
-                      className="w-full px-3 py-2.5 rounded-xl border border-border bg-secondary text-foreground placeholder-muted-foreground text-sm focus:outline-none focus:border-accent transition-colors"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-xs font-medium text-muted-foreground mb-1.5 uppercase tracking-wide">Localidad</label>
-                    <input
-                      value={formData.localidad}
-                      onChange={(e) => setFormData({ ...formData, localidad: e.target.value })}
-                      placeholder="Torrevieja, Murcia..."
-                      className="w-full px-3 py-2.5 rounded-xl border border-border bg-secondary text-foreground placeholder-muted-foreground text-sm focus:outline-none focus:border-accent transition-colors"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-xs font-medium text-muted-foreground mb-1.5 uppercase tracking-wide">Mensaje</label>
-                    <textarea
-                      rows={3}
-                      value={formData.mensaje}
-                      onChange={(e) => setFormData({ ...formData, mensaje: e.target.value })}
-                      placeholder="Tipo de instalación, superficie del tejado, consumo aproximado..."
-                      className="w-full px-3 py-2.5 rounded-xl border border-border bg-secondary text-foreground placeholder-muted-foreground text-sm focus:outline-none focus:border-accent transition-colors resize-none"
-                    />
-                  </div>
-
-                  <label className="flex items-start gap-3 cursor-pointer">
-                    <input
-                      type="checkbox"
-                      required
-                      checked={formData.privacidad}
-                      onChange={(e) => setFormData({ ...formData, privacidad: e.target.checked })}
-                      className="mt-0.5 w-4 h-4 accent-[#00A86B] flex-shrink-0"
-                    />
-                    <span className="text-xs text-muted-foreground leading-relaxed">
-                      He leído y acepto la{" "}
-                      <a href="#" className="text-accent underline hover:no-underline">Política de Privacidad</a>{" "}
-                      y consiento el tratamiento de mis datos para atender mi consulta. *
-                    </span>
-                  </label>
-
-                  <button
-                    type="submit"
-                    className="w-full py-3.5 rounded-xl bg-accent text-white font-bold text-sm hover:opacity-90 transition-opacity flex items-center justify-center gap-2 mt-1"
-                  >
-                    Solicitar presupuesto <ArrowRight size={14} />
-                  </button>
-                  <p className="text-xs text-muted-foreground text-center">
-                    Sin compromiso · Respuesta en menos de 24h · Conexión segura HTTPS
-                    <Lock size={10} className="inline ml-1 text-accent" />
-                  </p>
-                </form>
-              )}
-            </div>
-          </div>
-        </div>
-      </section>
+      <ContactSection />
 
       {/* FOOTER */}
-      <footer className="bg-primary text-primary-foreground pt-14 pb-6">
-        <div className="max-w-7xl mx-auto px-5">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-10">
-            <div className="col-span-2 md:col-span-1">
-              <div className="flex items-center gap-2 mb-4">
-                <div className="w-8 h-8 rounded-lg bg-accent flex items-center justify-center">
-                  <Sun size={15} className="text-white" />
-                </div>
-                <span className="font-bold text-base">SolPure</span>
-              </div>
-              <p className="text-white/60 text-xs leading-relaxed">
-                Empresa instaladora de energía solar fotovoltaica en Alicante, Murcia y Vega Baja del Segura.
-              </p>
-            </div>
 
-            <div>
-              <p className="font-semibold text-sm mb-4">Navegación</p>
-              <ul className="space-y-2 text-xs text-white/60">
-                {["Inicio", "Servicios", "Proyectos", "Blog", "Contacto"].map((l) => (
-                  <li key={l}><a href={`#${l.toLowerCase()}`} className="hover:text-white transition-colors">{l}</a></li>
-                ))}
-              </ul>
-            </div>
+    <FooterSection />
 
-            <div>
-              <p className="font-semibold text-sm mb-4">Legal</p>
-              <ul className="space-y-2 text-xs text-white/60">
-                {["Política de privacidad", "Política de cookies", "Aviso legal", "Configuración de cookies", "Accesibilidad"].map((l) => (
-                  <li key={l}><a href="#" className="hover:text-white transition-colors">{l}</a></li>
-                ))}
-              </ul>
-            </div>
-
-            <div>
-              <p className="font-semibold text-sm mb-4">Contacto</p>
-              <ul className="space-y-2 text-xs text-white/60">
-                <li className="flex items-center gap-2"><Phone size={11} /> 900 123 456</li>
-                <li className="flex items-center gap-2"><Mail size={11} /> info@solpure.es</li>
-                <li className="flex items-center gap-2"><MapPin size={11} /> Alicante · Murcia · Vega Baja</li>
-              </ul>
-            </div>
-          </div>
-
-          <div className="border-t border-white/10 pt-6 flex flex-col md:flex-row items-center justify-between gap-3">
-            <p className="text-xs text-white/40">
-              © 2024 SolPure Instalaciones Solares S.L. · CIF B-00000000 · Todos los derechos reservados
-            </p>
-            <div className="flex items-center gap-1.5 text-xs text-white/40">
-              <Lock size={10} className="text-accent" /> Sitio seguro · RGPD · LOPDGDD · LSSI-CE
-            </div>
-          </div>
-        </div>
-      </footer>
     </div>
   );
 }
