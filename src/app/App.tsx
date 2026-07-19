@@ -1,6 +1,6 @@
 import { useState } from "react";
 import {
-  Sun, Battery, Car, Home, Wifi, Wrench, Phone, Mail, MapPin, Star,
+  Sun, Battery, Car, Home, Wifi, Wrench, Phone, Mail, MapPin,
   Menu, X, Check, ChevronDown, ChevronUp, ArrowRight, Zap, Shield,
   TrendingDown, Clock, CreditCard, HeadphonesIcon, MessageCircle,
   BarChart3, Lock
@@ -80,36 +80,6 @@ const PROJECTS = [
   { img: "photo-1570129477492-45c003edd2be", label: "Chalet — Benidorm", kw: "10 kWp" },
 ];
 
-const TESTIMONIALS = [
-  {
-    name: "Rosa Martínez",
-    loc: "Torrevieja, Alicante",
-    body: "Llevamos un año con las placas y pasamos de 210€ al mes a 35€. El equipo fue muy profesional y resolvieron todos los trámites con la eléctrica sin que yo tuviese que hacer nada.",
-    stars: 5,
-    avatar: "photo-1438761681033-6461ffad8d80",
-  },
-  {
-    name: "Pedro Sánchez",
-    loc: "Murcia capital",
-    body: "Instalaron 12 paneles en dos días. La aplicación de monitorización es muy intuitiva. Ahorro real del 75% en el primer mes de verano. Muy recomendables.",
-    stars: 5,
-    avatar: "photo-1507003211169-0a1dd7228f2d",
-  },
-  {
-    name: "Comunidad El Palmeral",
-    loc: "Orihuela Costa",
-    body: "Instalaron 48 paneles en el garaje comunitario. Ahorro de 14.000€/año para los 32 vecinos. La tramitación con el ayuntamiento fue perfecta y muy rápida.",
-    stars: 5,
-    avatar: "photo-1472099645785-5658abf4ff4e",
-  },
-  {
-    name: "Isabel López",
-    loc: "Elda, Alicante",
-    body: "Añadimos batería y el cargador para el Tesla. Ahora me cuesta casi cero cargar el coche. La domótica integrada es fantástica, controlo todo desde el móvil.",
-    stars: 5,
-    avatar: "photo-1544005313-94ddf0286df2",
-  },
-];
 
 const FAQS = [
   { q: "¿Qué subvenciones existen para placas solares en Alicante y Murcia?", a: "Actualmente puedes acceder al programa MOVES III (hasta 1.300 €/punto de recarga), ayudas del IDAE para autoconsumo y subvenciones de la Generalitat Valenciana y la Región de Murcia. En muchos casos la deducción fiscal estatal llega al 20% en IRPF. Te asesoramos sin coste sobre todas las ayudas aplicables a tu caso." },
@@ -125,15 +95,6 @@ const FAQS = [
 
 // ─── Sub-components ───────────────────────────────────────────────────────────
 
-function StarRow({ n }: { n: number }) {
-  return (
-    <div className="flex gap-0.5">
-      {Array.from({ length: n }).map((_, i) => (
-        <Star key={i} size={13} fill="#00A86B" className="text-accent" />
-      ))}
-    </div>
-  );
-}
 
 function CookieBanner({ onAccept, onConfig }: { onAccept: () => void; onConfig: () => void }) {
   return (
@@ -539,40 +500,6 @@ export default function App() {
         </div>
       </section>
 
-      {/* TESTIMONIALS */}
-      <section id="opiniones" className="py-24 bg-secondary">
-        <div className="max-w-7xl mx-auto px-5">
-          <div className="text-center mb-14">
-            <p className="text-accent text-xs font-semibold tracking-widest uppercase mb-3">Opiniones de clientes</p>
-            <h2 className="text-3xl md:text-4xl font-extrabold mb-4">Lo que dicen nuestros clientes</h2>
-            <div className="flex items-center justify-center gap-2">
-              <StarRow n={5} />
-              <span className="text-sm font-bold text-foreground">4.9/5</span>
-              <span className="text-sm text-muted-foreground">· 312 reseñas verificadas</span>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
-            {TESTIMONIALS.map((t) => (
-              <div key={t.name} className="bg-white rounded-2xl border border-border p-5 flex flex-col gap-3">
-                <StarRow n={t.stars} />
-                <p className="text-sm text-foreground/80 leading-relaxed flex-1">"{t.body}"</p>
-                <div className="flex items-center gap-3 pt-3 border-t border-border">
-                  <img
-                    src={`https://images.unsplash.com/${t.avatar}?w=80&h=80&fit=crop&auto=format`}
-                    alt={t.name}
-                    className="w-9 h-9 rounded-full object-cover bg-secondary"
-                  />
-                  <div>
-                    <p className="text-xs font-semibold text-foreground">{t.name}</p>
-                    <p className="text-xs text-muted-foreground">{t.loc}</p>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* CALCULATOR */}
       <section className="py-24">
