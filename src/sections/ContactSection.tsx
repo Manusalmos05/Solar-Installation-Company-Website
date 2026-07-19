@@ -1,21 +1,23 @@
-import { useState } from "react";
+import { useState, type FormEvent } from "react";
+
 import {
   Phone,Mail,MapPin,Clock,ArrowRight,MessageCircle, Check, Lock
 } from "lucide-react";
 
-
-const [submitted, setSubmitted] = useState(false);
-
-function handleSubmit(e: React.FormEvent) {
-e.preventDefault();
-if (!formData.privacidad) return;
-setSubmitted(true);
-}
-const [formData, setFormData] = useState({
-nombre: "", telefono: "", email: "", localidad: "", mensaje: "", privacidad: false,
-});
-
 export default function ContactSection(){
+    const [submitted, setSubmitted] = useState(false);
+    const [formData, setFormData] = useState({
+    nombre: "", telefono: "", email: "", localidad: "", mensaje: "", privacidad: false,
+    });
+
+    function handleSubmit(e: FormEvent) {
+        e.preventDefault();
+
+        if (!formData.privacidad) return;
+
+        setSubmitted(true);
+    }
+    
     return( 
     <section id="contacto" className="py-24">
     <div className="max-w-7xl mx-auto px-5">

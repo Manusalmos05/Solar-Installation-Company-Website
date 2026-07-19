@@ -1,8 +1,5 @@
 import { useState } from "react";
-import {
-  Sun, Phone, Mail, MapPin,
-  Menu, X, Check, ChevronDown, ChevronUp, ArrowRight, Zap,
-   Clock,  MessageCircle, Lock
+import {Phone, MessageCircle
 } from "lucide-react";
 
 import Navbar from "../sections/Navbar.tsx";
@@ -15,13 +12,14 @@ import CalculatorSection from "../sections/CalculatorSection.tsx"
 import FqaSection from "../sections/FaqSection.tsx";
 import ContactSection from "../sections/ContactSection.tsx";
 import FooterSection from "../sections/FooterSection.tsx";
-import CookieBanner from "../app/components/CookieBanner";
+import CookieBanner from "../app/components/CookieBanner.tsx";
 
 // ─── Main ─────────────────────────────────────────────────────────────────────
 
 export default function App() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [cookieAccepted, setCookieAccepted] = useState(false);
+ 
   return (
     <div className="min-h-screen bg-background text-foreground" style={{ fontFamily: "'Inter', sans-serif" }}>
 

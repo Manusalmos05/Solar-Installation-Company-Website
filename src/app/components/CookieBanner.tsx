@@ -1,6 +1,14 @@
 
 import{Lock} from "lucide-react"
-export default function CookieBanner({ onAccept, onConfig }: { onAccept: () => void; onConfig: () => void }) {
+
+interface CookieBannerProps {
+    onAccept: () => void;
+    onConfig: () => void;
+}
+
+
+export default function CookieBanner({onAccept, onConfig,}: CookieBannerProps) {
+
   return (
     <div className="fixed bottom-0 left-0 right-0 z-[100] bg-primary text-primary-foreground p-4 md:p-5 shadow-2xl">
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-start md:items-center gap-4 justify-between">
