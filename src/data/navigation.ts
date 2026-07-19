@@ -1,0 +1,1 @@
+export const NAV = ["Inicio", "Servicios", "Proyectos", "Kits solares & Domótica", "Contacto"];

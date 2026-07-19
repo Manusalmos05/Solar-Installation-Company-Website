@@ -1,97 +1,17 @@
 import { useState } from "react";
 import {
-  Sun, Battery, Car, Home, Wifi, Wrench, Phone, Mail, MapPin,
-  Menu, X, Check, ChevronDown, ChevronUp, ArrowRight, Zap, Shield,
-  TrendingDown, Clock, CreditCard, HeadphonesIcon, MessageCircle,
-  BarChart3, Lock
+  Sun, Phone, Mail, MapPin,
+  Menu, X, Check, ChevronDown, ChevronUp, ArrowRight, Zap,
+   Clock,  MessageCircle, Lock
 } from "lucide-react";
-
-// ─── Data ────────────────────────────────────────────────────────────────────
-
-const SERVICES = [
-  {
-    icon: Sun,
-    title: "Placas Solares Fotovoltaicas",
-    desc: "Instalamos sistemas de autoconsumo residencial y comunidades de propietarios. Máximo rendimiento, certificación oficial y tramitación incluida.",
-    cta: "Ver más",
-    img: "photo-1509391366360-2e959784a276",
-  },
-  {
-    icon: Battery,
-    title: "Baterías Solares",
-    desc: "Almacena la energía que produces y úsala cuando más lo necesitas. Independencia de la red y ahorro máximo en horas punta.",
-    cta: "Ver más",
-    img: "photo-1614850715649-1d0106293bd1",
-  },
-  {
-    icon: Car,
-    title: "Cargadores Vehículo Eléctrico",
-    desc: "Puntos de recarga domésticos e industriales certificados. Carga tu coche con energía solar y reduce el coste a casi cero.",
-    cta: "Ver más",
-    img: "photo-1593941707882-a5bba14938c7",
-  },
-  {
-    icon: Wifi,
-    title: "Domótica Inteligente",
-    desc: "Automatiza y controla tu hogar desde el móvil. Termostatos, persianas, iluminación y seguridad integrados con tu sistema solar.",
-    cta: "Ver más",
-    img: "photo-1558618666-fcd25c85cd64",
-  },
-  {
-    icon: BarChart3,
-    title: "Monitorización Energética",
-    desc: "Visualiza en tiempo real tu producción, consumo y ahorro desde cualquier dispositivo. Alertas automáticas ante incidencias.",
-    cta: "Ver más",
-    img: "photo-1551288049-bebda4e38f71",
-  },
-  {
-    icon: Wrench,
-    title: "Mantenimiento",
-    desc: "Planes de mantenimiento preventivo y correctivo. Garantizamos el rendimiento máximo de tu instalación durante toda su vida útil.",
-    cta: "Ver más",
-    img: "photo-1497440001374-f26997328c1b",
-  },
-];
-
-const BENEFITS = [
-  { icon: TrendingDown, label: "Ahorro hasta 80%" },
-  { icon: Clock, label: "Instalación rápida" },
-  { icon: CreditCard, label: "Subvenciones" },
-  { icon: Shield, label: "Garantía 25 años" },
-  { icon: Wrench, label: "Mantenimiento" },
-  { icon: HeadphonesIcon, label: "Asesoramiento personalizado" },
-];
-
-const STEPS = [
-  { num: "01", title: "Auditoría gratuita", body: "Visitamos tu propiedad sin compromiso y analizamos tu consumo eléctrico real." },
-  { num: "02", title: "Estudio energético", body: "Diseñamos la instalación óptima para tu tejado, orientación y consumo." },
-  { num: "03", title: "Presupuesto", body: "Recibes un presupuesto detallado, transparente y sin letra pequeña." },
-  { num: "04", title: "Instalación", body: "Nuestro equipo propio instala con limpieza, precisión y en el plazo acordado." },
-  { num: "05", title: "Legalización", body: "Gestionamos todos los trámites con distribuidora y administración por ti." },
-  { num: "06", title: "Puesta en marcha", body: "Activamos tu sistema, verificamos rendimiento y te enseñamos a monitorizarlo." },
-];
-
-const PROJECTS = [
-  { img: "photo-1600585154340-be6161a56a0c", label: "Chalet — Torrevieja", kw: "8 kWp" },
-  { img: "photo-1497366811353-6870744d04b2", label: "Comunidad — Alicante", kw: "32 kWp" },
-  { img: "photo-1558618047-3c8c76ca7d13", label: "Unifamiliar — Murcia", kw: "6 kWp" },
-  { img: "photo-1605152276897-4f618f831968", label: "Adosado — Orihuela", kw: "5 kWp" },
-  { img: "photo-1487958449943-2429e8be8625", label: "Nave industrial — Elche", kw: "120 kWp" },
-  { img: "photo-1570129477492-45c003edd2be", label: "Chalet — Benidorm", kw: "10 kWp" },
-];
+import { SERVICES } from "../data/services.ts";
+import { BENEFITS } from "../data/benefits.ts";
+import { STEPS } from "../data/steps.ts";
+import { PROJECTS } from "../data/projects.ts";
+import { FAQS } from "../data/faqs.ts";
+import Navbar from "../sections/Navbar.tsx";
 
 
-const FAQS = [
-  { q: "¿Qué subvenciones existen para placas solares en Alicante y Murcia?", a: "Actualmente puedes acceder al programa MOVES III (hasta 1.300 €/punto de recarga), ayudas del IDAE para autoconsumo y subvenciones de la Generalitat Valenciana y la Región de Murcia. En muchos casos la deducción fiscal estatal llega al 20% en IRPF. Te asesoramos sin coste sobre todas las ayudas aplicables a tu caso." },
-  { q: "¿Cuánto tiempo dura la instalación de placas solares?", a: "Una instalación residencial estándar (6–10 paneles) se completa en 1–2 días laborables. Comunidades de propietarios o instalaciones industriales pueden requerir entre 3 y 5 días. La tramitación administrativa posterior tarda entre 4 y 8 semanas." },
-  { q: "¿Necesito batería solar?", a: "Depende de tu perfil de consumo. Si consumes mucho en horario nocturno o quieres independencia total de la red, la batería maximiza el ahorro. Si tu consumo es principalmente diurno, los paneles solos ya ofrecen un retorno excelente. Te lo analizamos gratis." },
-  { q: "¿Cuánto puedo ahorrar con la energía solar?", a: "Con una instalación bien dimensionada, el ahorro medio en Alicante y Murcia oscila entre el 60% y el 80% de la factura eléctrica anual. Con batería, puedes alcanzar el 90–95%. La amortización media es de 5–7 años." },
-  { q: "¿Qué pasa si produzco más energía de la que consumo?", a: "El excedente se vierte a la red y recibes una compensación económica en tu factura (autoconsumo con excedentes). También puedes almacenarlo en batería para usarlo por la noche." },
-  { q: "¿Puedo instalar un cargador de coche eléctrico con energía solar?", a: "Sí, es una de las combinaciones más rentables. Puedes cargar tu vehículo eléctrico directamente con la energía que producen tus paneles, reduciendo el coste de recarga prácticamente a cero en los meses de mayor irradiación." },
-  { q: "¿Necesito permiso del ayuntamiento para instalar placas solares?", a: "En viviendas unifamiliares generalmente basta con comunicación a la distribuidora. En edificios de protección histórica o comunidades pueden requerirse permisos adicionales. Nos encargamos de todos los trámites por ti." },
-  { q: "¿Qué mantenimiento requieren los paneles solares?", a: "Los paneles fotovoltaicos tienen un mantenimiento mínimo: una limpieza anual y revisión de conexiones. Ofrecemos planes de mantenimiento desde 79 €/año con garantía de rendimiento." },
-  { q: "¿La domótica es compatible con cualquier instalación solar?", a: "Nuestros sistemas domóticos se integran con cualquier instalación solar que instalemos. Controlamos iluminación, climatización, persianas, seguridad y consumos desde una sola app compatible con iOS y Android." },
-];
 
 // ─── Sub-components ───────────────────────────────────────────────────────────
 
@@ -242,10 +162,14 @@ export default function App() {
     setSubmitted(true);
   }
 
-  const NAV = ["Inicio", "Servicios", "Proyectos", "Kits solares & Domótica", "Contacto"];
 
   return (
     <div className="min-h-screen bg-background text-foreground" style={{ fontFamily: "'Inter', sans-serif" }}>
+      {/* Navbar */}
+        <Navbar 
+        menuOpen={menuOpen}
+    setMenuOpen={setMenuOpen}/>
+
 
       {/* Cookie banner */}
       {!cookieAccepted && (
@@ -270,62 +194,7 @@ export default function App() {
         </a>
       </div>
 
-      {/* NAV */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-border">
-        <div className="max-w-7xl mx-auto px-5 h-16 flex items-center justify-between">
-          <a href="#inicio" className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-lg bg-accent flex items-center justify-center">
-              <Sun size={15} className="text-white" />
-            </div>
-            <div>
-              <span className="font-bold text-primary text-base tracking-tight">SolPure</span>
-              <span className="hidden sm:inline text-xs text-muted-foreground ml-1.5">Energía Solar</span>
-            </div>
-          </a>
 
-          <div className="hidden lg:flex items-center gap-7">
-            {NAV.map((l) => (
-              <a key={l} href={`#${l.toLowerCase()}`} className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-                {l}
-              </a>
-            ))}
-          </div>
-
-          <div className="hidden lg:flex items-center gap-3">
-            <a href="tel:+34900123456" className="flex items-center gap-1.5 text-sm font-medium text-foreground hover:text-accent transition-colors">
-              <Phone size={14} /> 900 123 456
-            </a>
-            <a
-              href="#contacto"
-              className="px-4 py-2 rounded-full bg-accent text-accent-foreground text-sm font-semibold hover:opacity-90 transition-opacity flex items-center gap-1.5"
-            >
-              Presupuesto gratis <ArrowRight size={13} />
-            </a>
-          </div>
-
-          <button onClick={() => setMenuOpen(!menuOpen)} className="lg:hidden text-foreground">
-            {menuOpen ? <X size={22} /> : <Menu size={22} />}
-          </button>
-        </div>
-
-        {menuOpen && (
-          <div className="lg:hidden bg-white border-t border-border px-5 pb-6 pt-3 flex flex-col gap-3">
-            {NAV.map((l) => (
-              <a key={l} href={`#${l.toLowerCase()}`} onClick={() => setMenuOpen(false)} className="py-1 text-sm text-foreground">
-                {l}
-              </a>
-            ))}
-            <div className="flex gap-3 pt-2">
-              <a href="tel:+34900123456" className="flex-1 py-2.5 rounded-full border border-border text-center text-sm font-medium flex items-center justify-center gap-1.5">
-                <Phone size={13} /> Llamar
-              </a>
-              <a href="#contacto" onClick={() => setMenuOpen(false)} className="flex-1 py-2.5 rounded-full bg-accent text-white text-center text-sm font-semibold">
-                Presupuesto
-              </a>
-            </div>
-          </div>
-        )}
-      </nav>
 
       {/* HERO */}
       <section id="inicio" className="relative min-h-screen flex items-center pt-16">
