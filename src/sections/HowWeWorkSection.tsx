@@ -15,7 +15,7 @@ export default function HowWeWorkSection() {
         </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-rows-2 grid-flow-col gap-6">
         {STEPS.map((step) => (
             <div key={step.num} className="flex gap-4">
             <div className="flex-shrink-0 w-10 h-10 rounded-full border border-accent/50 flex items-center justify-center text-accent text-xs font-bold">

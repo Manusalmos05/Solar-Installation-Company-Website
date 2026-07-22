@@ -36,7 +36,7 @@ export default function Navbar({
 
         <div className="hidden lg:flex items-center gap-3">
         <a href="tel:+34900123456" className="flex items-center gap-1.5 text-sm font-medium text-foreground hover:text-accent transition-colors">
-            <Phone size={14} /> 900 123 456
+            <Phone size={14} /> 624890494
         </a>
         <a
             href="#contacto"

@@ -21,7 +21,7 @@ export default function ProjectsSection() {
             style={{ height: i === 0 ? undefined : "200px" }}
             >
             <img
-                src={`https://images.unsplash.com/${p.img}?w=700&h=500&fit=crop&auto=format`}
+                src={p.img}
                 alt={p.label}
                 loading="lazy"
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
