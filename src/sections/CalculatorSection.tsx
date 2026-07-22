@@ -12,10 +12,10 @@ export default function CalculatorSection() {
             <h2 className="text-3xl md:text-4xl font-extrabold mb-5">¿Cuánto puedes ahorrar con la energía solar?</h2>
             <p className="text-muted-foreground leading-relaxed mb-6">
             Introduce tu gasto mensual en electricidad, tu provincia y el tipo de vivienda. Te mostramos un estimado inmediato.
-            Para un cálculo exacto, solicita tu auditoría gratuita.
+            <b>Para un cálculo exacto, solicita una cita de valoración.</b>
             </p>
             <div className="flex flex-wrap gap-4 text-sm text-muted-foreground">
-            {["placas solares Alicante", "autoconsumo Murcia", "energía solar Vega Baja"].map((kw) => (
+            {["placas solares Alicante", "autoconsumo Murcia", "energía solar Vega Baja", "ahorro en tu factura"].map((kw) => (
                 <span key={kw} className="px-3 py-1 rounded-full bg-secondary border border-border text-xs">{kw}</span>
             ))}
             </div>

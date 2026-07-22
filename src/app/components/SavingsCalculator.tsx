@@ -51,7 +51,7 @@ export default function Calculator() {
           >
             <option value="unifamiliar">Unifamiliar / Chalet</option>
             <option value="adosado">Adosado</option>
-            <option value="comunidad">Comunidad de propietarios</option>
+           
           </select>
         </div>
       </div>
