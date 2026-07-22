@@ -1,4 +1,4 @@
-import {  Zap, Phone, ArrowRight, Mail} from "lucide-react";
+import {  Zap, ArrowRight, Mail} from "lucide-react";
 export default function HeroSection() {
   return (
 

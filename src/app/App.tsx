@@ -1,6 +1,5 @@
 import { useState } from "react";
-import {Phone, MessageCircle
-} from "lucide-react";
+import {Phone, MessageCircle} from "lucide-react";
 
 import Navbar from "../sections/Navbar.tsx";
 import HeroSection from "../sections/HeroSection.tsx";
@@ -15,7 +14,6 @@ import FooterSection from "../sections/FooterSection.tsx";
 import CookieBanner from "../app/components/CookieBanner.tsx";
 
 // ─── Main ─────────────────────────────────────────────────────────────────────
-
 export default function App() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [cookieAccepted, setCookieAccepted] = useState(false);
