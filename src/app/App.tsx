@@ -12,6 +12,7 @@ import FqaSection from "../sections/FaqSection.tsx";
 import ContactSection from "../sections/ContactSection.tsx";
 import FooterSection from "../sections/FooterSection.tsx";
 import CookieBanner from "../app/components/CookieBanner.tsx";
+import KitsSection from "../sections/kitsSection.tsx";
 
 // ─── Main ─────────────────────────────────────────────────────────────────────
 export default function App() {
@@ -65,6 +66,9 @@ export default function App() {
 
       {/* PROJECTS */}
       <ProjectsSection />
+
+      {/*KITS */}
+      < KitsSection/>
 
       {/* CALCULATOR */}
       <CalculatorSection />
