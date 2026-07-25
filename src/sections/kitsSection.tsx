@@ -15,7 +15,7 @@ export default function KitsSection() {
         </p>
         </div>
 
-        <div className="grid-cols-1 lg:grid-cols-2 gap-8 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-1 gap-6">
         {KITS.map((k) => (
             <div
             key={k.title}
@@ -29,12 +29,11 @@ export default function KitsSection() {
             hover:shadow-xl
             transition-all
             duration-300
-
-            min-h-[75vh]    
+           
            "
             >
                  {/* IMAGEN */}
-            <div className="bg-gray-50 p-4">
+            <div className="bg-gray-50 p-7">
                 <img
                     src={k.img}
                     alt={k.title}
