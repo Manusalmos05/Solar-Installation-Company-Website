@@ -1,5 +1,5 @@
 import React from "react";
-import { Sun, Phone, ArrowRight, Menu, X } from "lucide-react";
+import { Zap, Phone, ArrowRight, Menu, X } from "lucide-react";
 import { NAV } from "../data/navigation";
 
 interface NavbarProps {
@@ -18,7 +18,7 @@ export default function Navbar({
     <div className="max-w-7xl mx-auto px-5 h-16 flex items-center justify-between">
         <a href="#inicio" className="flex items-center gap-2">
         <div className="w-8 h-8 rounded-lg bg-accent flex items-center justify-center">
-            <Sun size={15} className="text-white" />
+            <Zap size={15} className="text-white" />
         </div>
         <div>
             <span className="font-bold text-primary text-base tracking-tight">SolPure</span>
