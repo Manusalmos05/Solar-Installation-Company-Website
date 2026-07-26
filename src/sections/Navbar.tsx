@@ -1,6 +1,6 @@
 import React from "react";
 import { Zap, Phone, ArrowRight, Menu, X } from "lucide-react";
-import { NAV } from "../data/navigation";
+import { NAV, NAV_DIR } from "../data/navigation";
 
 interface NavbarProps {
   menuOpen: boolean;
@@ -27,8 +27,8 @@ export default function Navbar({
         </a>
 
         <div className="hidden lg:flex items-center gap-7">
-        {NAV.map((l) => (
-            <a key={l} href={`#${l.toLowerCase()}`} className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+        {NAV.map((l, i) => (
+            <a key={l} href={`#${NAV_DIR[i].toLowerCase()}`} className="text-sm text-muted-foreground hover:text-foreground transition-colors">
             {l}
             </a>
         ))}

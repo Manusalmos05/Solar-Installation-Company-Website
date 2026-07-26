@@ -4,7 +4,7 @@ import KitsCarousel from "../app/components/KitsCarousel";
 
 export default function KitsSection() {
   return (
-    <section id="proyectos" className="py-24 bg-primary text-primary-foreground">
+    <section id="kits" className="py-24 bg-primary text-primary-foreground">
     <div className="max-w-7xl mx-auto px-6">
           {/* Título */}
         <div className="text-center mb-14">
