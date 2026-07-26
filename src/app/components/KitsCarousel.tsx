@@ -6,7 +6,7 @@ import { KITS } from "../../data/kits.ts";
 export default function KitsCarousel() {
   const [emblaRef, emblaApi] = useEmblaCarousel({
     align: "center",
-    loop: false,
+    loop: true,
     dragFree: false,
   });
 
@@ -55,7 +55,7 @@ export default function KitsCarousel() {
                         className="max-h-full max-w-full object-contain transition-transform duration-300 hover:scale-105"
                     />
                 </div>
-
+ {/*  
                 <div className="p-6">
 
                   <h3 className="text-2xl font-bold mb-4">
@@ -66,7 +66,7 @@ export default function KitsCarousel() {
                     {k.desc}
                   </p>
 
-                  <div>
+               <div>
                        
                         <p className="text-xs uppercase text-muted-foreground">
                         Desde
@@ -76,21 +76,22 @@ export default function KitsCarousel() {
                         {k.price}
                         </p>
 
-                    </div>
+                    </div> */}
 
-                     <div className="flex justify-end w-full">
-                        <a
-                            href="#contacto"
-                            className="inline-flex items-center gap-2 rounded-xl bg-accent px-5 py-3 text-white font-semibold hover:bg-accent/90 transition">
-                            Solicitar presupuesto <ArrowRight size={18} />
-                        </a>
-                    </div>
+                  <div className="flex justify-center w-full">
+                  <a
+                      href="#contacto"
+                      className="inline-flex items-center gap-2 rounded-xl bg-accent mt-4 mb-2 px-5 py-3 text-white font-semibold hover:bg-accent/90 transition">
+                      Solicitar presupuesto <ArrowRight size={18} />
+                  </a>
+                  </div>     
 
                 </div>
 
+
               </div>
 
-            </div>
+            
           ))}
 
         </div>

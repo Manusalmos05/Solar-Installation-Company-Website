@@ -39,14 +39,14 @@ export const SERVICES = [
     img: "/images/domotica.jpg",
   },
   {
-    icon: BarChart3,
+    icon: Wrench,
     title: "Reforma Energética",
     desc: "Instalación eléctrica doméstica completa, con los mejores estandares, tramitación incluida.",
     cta: "Ver más",
     img: "/images/reforma.jpg",
   },
   {
-    icon: Wrench,
+    icon: BarChart3,
     title: "Certificados Energéticos",
     desc: "Certifica tu hogar con el boletín de consumo energético obligatorio, valoriza tu propiedad y legaliza tus instalaciones",
     cta: "Ver más",
