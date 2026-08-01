@@ -10,6 +10,16 @@ export interface BlogArticle {
 
 export const ARTICLES: BlogArticle[] = [
   {
+    slug: "el-mito-del-60-de-descuento-en-el-irpf",
+    title: 'El mito del "60% de descuento" en el IRPF',
+    excerpt:
+      "Destripamos una instalación de 11.500 € llave en mano en Alicante: qué te llevas, cómo funcionan de verdad las deducciones estatal y autonómica, quién puede aprovecharlas y cómo se compara con un depósito bancario.",
+    date: "2026-07-31",
+    tags: ["fiscalidad", "IRPF", "autoconsumo"],
+    cover: "images/cargador_chalet.png",
+    readingMinutes: 10,
+  },
+  {
     slug: "cuantas-placas-solares-necesita-tu-casa",
     title: "¿Cuántas placas solares necesita tu casa? La fórmula, paso a paso",
     excerpt:
