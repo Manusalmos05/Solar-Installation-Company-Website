@@ -17,7 +17,7 @@ function figmaAssetResolver() {
 }
 
 export default defineConfig({
-  base: "/Solar-Installation-Company-Website/",
+  base: "/",
 
   plugins: [
     figmaAssetResolver(),
