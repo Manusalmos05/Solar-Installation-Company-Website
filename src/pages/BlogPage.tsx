@@ -24,7 +24,8 @@ export default function BlogPage() {
     return sortedArticles.filter((a) => {
       const haystack = normalize(`${a.title} ${a.excerpt} ${a.tags.join(" ")}`);
       const matchesQuery = q === "" || haystack.includes(q);
-      const matchesTags = activeTags.every((t) => a.tags.includes(t));
+      const matchesTags =
+        activeTags.length === 0 || activeTags.some((t) => a.tags.includes(t));
       return matchesQuery && matchesTags;
     });
   }, [query, activeTags]);
