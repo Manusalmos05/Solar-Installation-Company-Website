@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Routes, Route, Navigate } from "react-router";
+import { Routes, Route } from "react-router";
 import { Phone, MessageCircle } from "lucide-react";
 
 import Navbar from "../sections/Navbar.tsx";
@@ -9,6 +9,7 @@ import ScrollToTop from "./components/ScrollToTop.tsx";
 import HomePage from "../pages/HomePage.tsx";
 import BlogPage from "../pages/BlogPage.tsx";
 import ArticlePage from "../pages/ArticlePage.tsx";
+import NotFoundPage from "../pages/NotFoundPage.tsx";
 
 export default function App() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -45,7 +46,7 @@ export default function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/blog" element={<BlogPage />} />
         <Route path="/blog/:slug" element={<ArticlePage />} />
-        <Route path="*" element={<Navigate to="/" replace />} />
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
 
       <FooterSection />
