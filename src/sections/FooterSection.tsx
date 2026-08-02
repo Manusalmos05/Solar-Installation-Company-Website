@@ -11,7 +11,7 @@ export default function FooterSection(){
             <div className="w-8 h-8 rounded-lg bg-accent flex items-center justify-center">
                 <Sun size={15} className="text-white" />
             </div>
-            <span className="font-bold text-base">SolPure</span>
+            <span className="font-bold text-base">White Fox Energy</span>
             </div>
             <p className="text-white/60 text-xs leading-relaxed">
             Empresa instaladora de energía solar fotovoltaica en Alicante, Murcia y Vega Baja del Segura.
@@ -39,8 +39,8 @@ export default function FooterSection(){
         <div>
             <p className="font-semibold text-sm mb-4">Contacto</p>
             <ul className="space-y-2 text-xs text-white/60">
-            <li className="flex items-center gap-2"><Phone size={11} /> 900 123 456</li>
-            <li className="flex items-center gap-2"><Mail size={11} /> info@solpure.es</li>
+            <li className="flex items-center gap-2"><Phone size={11} /> 743098335</li>
+            <li className="flex items-center gap-2"><Mail size={11} /> info@White Fox Energy.es</li>
             <li className="flex items-center gap-2"><MapPin size={11} /> Alicante · Murcia · Vega Baja</li>
             </ul>
         </div>
@@ -48,7 +48,7 @@ export default function FooterSection(){
 
         <div className="border-t border-white/10 pt-6 flex flex-col md:flex-row items-center justify-between gap-3">
         <p className="text-xs text-white/40">
-            © 2024 SolPure Instalaciones Solares S.L. · CIF B-00000000 · Todos los derechos reservados
+            © 2024 White Fox Energy Instalaciones Solares S.L. · CIF B-00000000 · Todos los derechos reservados
         </p>
         <div className="flex items-center gap-1.5 text-xs text-white/40">
             <Lock size={10} className="text-accent" /> Sitio seguro · RGPD · LOPDGDD · LSSI-CE

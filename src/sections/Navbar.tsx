@@ -21,7 +21,7 @@ export default function Navbar({
             <Zap size={15} className="text-white" />
         </div>
         <div>
-            <span className="font-bold text-primary text-base tracking-tight">SolPure</span>
+            <span className="font-bold text-primary text-base tracking-tight">White Fox Energy</span>
             <span className="hidden sm:inline text-xs text-muted-foreground ml-1.5">Energía Solar</span>
         </div>
         </a>
@@ -36,7 +36,7 @@ export default function Navbar({
 
         <div className="hidden lg:flex items-center gap-3">
         <a href="tel:+34900123456" className="flex items-center gap-1.5 text-sm font-medium text-foreground hover:text-accent transition-colors">
-            <Phone size={14} /> 624890494
+            <Phone size={14} /> 743098335
         </a>
         <a
             href="#contacto"
