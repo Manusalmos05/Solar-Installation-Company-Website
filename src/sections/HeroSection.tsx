@@ -30,7 +30,7 @@ export default function HeroSection() {
             Solicitar presupuesto gratuito <ArrowRight size={15} />
             </a>
             <a
-            href="tel:+34900123456"
+            href="tel:+34743098335"
             className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-white/10 border border-white/30 text-white font-semibold text-sm hover:bg-white/20 transition-colors"
             >
             <Phone size={14} /> Llámanos ahora

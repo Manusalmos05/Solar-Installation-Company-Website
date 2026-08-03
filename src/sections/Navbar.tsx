@@ -35,7 +35,7 @@ export default function Navbar({
         </div>
 
         <div className="hidden lg:flex items-center gap-3">
-        <a href="tel:+34900123456" className="flex items-center gap-1.5 text-sm font-medium text-foreground hover:text-accent transition-colors">
+        <a href="tel:+34743098335" className="flex items-center gap-1.5 text-sm font-medium text-foreground hover:text-accent transition-colors">
             <Phone size={14} /> 743098335
         </a>
         <a
@@ -59,7 +59,7 @@ export default function Navbar({
             </a>
         ))}
         <div className="flex gap-3 pt-2">
-            <a href="tel:+34900123456" className="flex-1 py-2.5 rounded-full border border-border text-center text-sm font-medium flex items-center justify-center gap-1.5">
+            <a href="tel:+34743098335" className="flex-1 py-2.5 rounded-full border border-border text-center text-sm font-medium flex items-center justify-center gap-1.5">
             <Phone size={13} /> Llamar
             </a>
             <a href="#contacto" onClick={() => setMenuOpen(false)} className="flex-1 py-2.5 rounded-full bg-accent text-white text-center text-sm font-semibold">
