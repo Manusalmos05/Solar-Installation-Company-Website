@@ -52,6 +52,8 @@ export default function KitsCarousel() {
                     <img
                         src={k.img}
                         alt={k.title}
+                        loading="lazy"
+                        decoding="async"
                         className="max-h-full max-w-full object-contain transition-transform duration-300 hover:scale-105"
                     />
                 </div>
