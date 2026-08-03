@@ -37,14 +37,14 @@ export default function App() {
       {/* Floating CTAs */}
       <div className="fixed bottom-6 right-4 z-50 flex flex-col gap-3" style={{ bottom: cookieAccepted ? "1.5rem" : "5.5rem" }}>
         <a
-          href="tel:+34624890494"
+          href="tel:+34743098335"
           className="w-12 h-12 rounded-full bg-primary text-primary-foreground flex items-center justify-center shadow-lg hover:scale-110 transition-transform"
           title="Llamar ahora"
         >
           <Phone size={18} />
         </a>
         <a
-          href="https://wa.me/34624890494"
+          href="https://wa.me/34743098335"
           className="w-12 h-12 rounded-full bg-accent text-accent-foreground flex items-center justify-center shadow-lg hover:scale-110 transition-transform"
           title="WhatsApp"
         >

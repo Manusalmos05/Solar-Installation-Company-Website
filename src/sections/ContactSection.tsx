@@ -1,22 +1,52 @@
+import emailjs from "@emailjs/browser";
 import { useState, type FormEvent } from "react";
 
-import {
-  Phone,Mail,MapPin,Clock,ArrowRight,MessageCircle, Check, Lock
-} from "lucide-react";
 
+import {
+  Phone,Mail,MapPin,Clock,ArrowRight,MessageCircle, Check, Lock,
+  Loader2
+} from "lucide-react";
+const SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+const PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 export default function ContactSection(){
     const [submitted, setSubmitted] = useState(false);
+    const [sending, setSending] = useState(false);
+    const [error, setError] = useState<string | null>(null);
     const [formData, setFormData] = useState({
     nombre: "", telefono: "", email: "", localidad: "", mensaje: "", privacidad: false,
     });
 
-    function handleSubmit(e: FormEvent) {
-        e.preventDefault();
+    async function handleSubmit(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault();
 
-        if (!formData.privacidad) return;
+    if (!formData.privacidad) return;
+
+    setSending(true);
+    setError(null);
+
+    try {
+        await emailjs.send(
+            SERVICE_ID,
+            TEMPLATE_ID,
+            {
+                nombre: formData.nombre,
+                telefono: formData.telefono,
+                email: formData.email,
+                localidad: formData.localidad,
+                mensaje: formData.mensaje,
+            },
+            { publicKey: PUBLIC_KEY }
+        );
 
         setSubmitted(true);
+    } catch (err) {
+        console.error("Error al enviar el email:", err);
+        setError("No se pudo enviar tu solicitud. Inténtalo de nuevo o llámanos por teléfono.");
+    } finally {
+        setSending(false);
     }
+}
     
     return( 
     <section id="contacto" className="py-24">
@@ -34,9 +64,9 @@ export default function ContactSection(){
 
         <div className="space-y-4 mb-8">
         {[
-            { Icon: Phone, label: "900 123 456 (gratuito)", href: "tel:+34900123456" },
-            { Icon: MessageCircle, label: "WhatsApp: 600 000 000", href: "https://wa.me/34624890494" },
-            { Icon: Mail, label: "info@solpure.es", href: "mailto:info@solpure.es" },
+            { Icon: Phone, label: "743098335", href: "tel:+34743098335" },
+            { Icon: MessageCircle, label: "WhatsApp: 743098335", href: "https://wa.me/34743098335" },
+            { Icon: Mail, label: "info@wf-energy.com", href: "mailto:info@wf-energy.com" },
             { Icon: MapPin, label: "Alicante · Murcia · Vega Baja del Segura", href: "#" },
             { Icon: Clock, label: "Lun–Vie 8:30–18:30 · Sáb 9:00–14:00", href: "#" },
         ].map(({ Icon, label, href }) => (
@@ -63,7 +93,7 @@ export default function ContactSection(){
             </div>
             <h3 className="text-xl font-bold">¡Solicitud recibida!</h3>
             <p className="text-muted-foreground text-sm max-w-xs">
-            Te contactaremos en menos de 24 horas con tu presupuesto personalizado. ¡Gracias por confiar en SolPure!
+            Te contactaremos en menos de 24 horas con tu presupuesto personalizado. ¡Gracias por confiar en White Fox Energy!
             </p>
             <button onClick={() => { setSubmitted(false); setFormData({ nombre: "", telefono: "", email: "", localidad: "", mensaje: "", privacidad: false }); }} className="text-xs text-accent hover:underline mt-2">
             Enviar otra consulta
@@ -143,12 +173,26 @@ export default function ContactSection(){
                 y consiento el tratamiento de mis datos para atender mi consulta. *
             </span>
             </label>
+            {error && (
+                <p className="text-xs text-red-600 bg-red-50 border border-red-200 rounded-lg px-3 py-2">
+                    {error}
+                </p>
+            )}
 
-            <button
-            type="submit"
-            className="w-full py-3.5 rounded-xl bg-accent text-white font-bold text-sm hover:opacity-90 transition-opacity flex items-center justify-center gap-2 mt-1"
+            <button 
+                type="submit"
+                disabled={sending}
+                className="w-full py-3.5 rounded-xl bg-accent text-white font-bold text-sm hover:opacity-90 transition-opacity flex items-center justify-center gap-2 mt-1"
             >
-            Solicitar presupuesto <ArrowRight size={14} />
+                {sending ? (
+                    <>
+                    <Loader2 size={14} className="animate-spin" /> Enviando...
+                    </>
+                ) : (
+                    <>
+                    Solicitar presupuesto <ArrowRight size={14} />
+                    </>
+                )}
             </button>
             <p className="text-xs text-muted-foreground text-center">
             Sin compromiso · Respuesta en menos de 24h · Conexión segura HTTPS
