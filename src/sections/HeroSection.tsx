@@ -1,4 +1,4 @@
-import {  Zap, ArrowRight, Mail} from "lucide-react";
+import {  Zap, ArrowRight, Phone} from "lucide-react";
 export default function HeroSection() {
   return (
 
@@ -33,7 +33,7 @@ export default function HeroSection() {
             href="tel:+34900123456"
             className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-white/10 border border-white/30 text-white font-semibold text-sm hover:bg-white/20 transition-colors"
             >
-            <Mail size={14} /> Escríbenos ahora
+            <Phone size={14} /> Llámanos ahora
             </a>
         </div>
         </div>
