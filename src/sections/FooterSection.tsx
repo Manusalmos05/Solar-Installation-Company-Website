@@ -40,7 +40,7 @@ export default function FooterSection(){
             <p className="font-semibold text-sm mb-4">Contacto</p>
             <ul className="space-y-2 text-xs text-white/60">
             <li className="flex items-center gap-2"><Phone size={11} /> 743098335</li>
-            <li className="flex items-center gap-2"><Mail size={11} /> info@White Fox Energy.es</li>
+            <li className="flex items-center gap-2"><Mail size={11} /> info@wf-energy.com</li>
             <li className="flex items-center gap-2"><MapPin size={11} /> Alicante · Murcia · Vega Baja</li>
             </ul>
         </div>
