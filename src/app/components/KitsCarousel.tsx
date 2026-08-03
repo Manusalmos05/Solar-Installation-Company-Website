@@ -25,7 +25,8 @@ export default function KitsCarousel() {
 
       <button
         onClick={scrollPrev}
-        className="group absolute leftt-0 top-1/2 -translate-y-1/2 z-20 rounded-full bg-primary shadow-lg p-3 hover:bg-gray-100"
+        aria-label="Ver kit anterior"
+        className="group absolute left-0 top-1/2 -translate-y-1/2 z-20 rounded-full bg-primary shadow-lg p-3 hover:bg-gray-100"
       >
         <ChevronLeft className="text-white group-hover:text-primary transition-colors" />
       </button>
@@ -80,6 +81,7 @@ export default function KitsCarousel() {
 
       <button
         onClick={scrollNext}
+        aria-label="Ver kit siguiente"
         className="group absolute right-0 top-1/2 -translate-y-1/2 z-20 rounded-full bg-primary shadow-lg p-3 hover:bg-gray-100"
       >
        <ChevronRight className="text-white group-hover:text-primary transition-colors" />

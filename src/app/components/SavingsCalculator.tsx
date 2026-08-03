@@ -120,10 +120,11 @@ export default function Calculator() {
         <div className="overflow-hidden">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
             <div>
-              <label className="block text-xs font-medium text-muted-foreground mb-2 uppercase tracking-wide">
+              <label htmlFor="calc-factura" className="block text-xs font-medium text-muted-foreground mb-2 uppercase tracking-wide">
                 Factura promedio mensual (€)
               </label>
               <input
+                id="calc-factura"
                 type="number"
                 min={30}
                 max={2000}
@@ -133,10 +134,11 @@ export default function Calculator() {
               />
             </div>
             <div>
-              <label className="block text-xs font-medium text-muted-foreground mb-2 uppercase tracking-wide">
+              <label htmlFor="calc-provincia" className="block text-xs font-medium text-muted-foreground mb-2 uppercase tracking-wide">
                 Provincia
               </label>
               <select
+                id="calc-provincia"
                 value={provincia}
                 onChange={(e) => setProvincia(e.target.value)}
                 className="w-full px-4 py-3 rounded-xl border border-border bg-secondary text-foreground text-sm focus:outline-none focus:border-accent transition-colors"

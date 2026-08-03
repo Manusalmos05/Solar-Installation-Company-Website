@@ -10,7 +10,7 @@ interface CookieBannerProps {
 export default function CookieBanner({onAccept, onConfig,}: CookieBannerProps) {
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-[100] bg-primary text-primary-foreground p-4 md:p-5 shadow-2xl">
+    <aside aria-label="Aviso de cookies" className="fixed bottom-0 left-0 right-0 z-[100] bg-primary text-primary-foreground p-4 md:p-5 shadow-2xl">
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-start md:items-center gap-4 justify-between">
         <div className="flex items-start gap-3">
           <Lock size={18} className="mt-0.5 flex-shrink-0 text-accent" />
@@ -29,6 +29,6 @@ export default function CookieBanner({onAccept, onConfig,}: CookieBannerProps) {
           </button>
         </div>
       </div>
-    </div>
+    </aside>
   );
 }

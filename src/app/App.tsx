@@ -52,6 +52,8 @@ export default function App() {
         </a>
       </div>
 
+      <main>
+
       {/* HERO */}
       <HeroSection />
 
@@ -78,6 +80,8 @@ export default function App() {
 
       {/* CONTACT */}
       <ContactSection />
+
+      </main>
 
       {/* FOOTER */}
 

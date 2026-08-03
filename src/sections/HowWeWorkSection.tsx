@@ -22,7 +22,7 @@ export default function HowWeWorkSection() {
                 {step.num}
             </div>
             <div>
-                <h4 className="font-bold text-sm mb-1 text-white">{step.title}</h4>
+                <h3 className="font-bold text-sm mb-1 text-white">{step.title}</h3>
                 <p className="text-white/60 text-sm leading-relaxed">{step.body}</p>
             </div>
             </div>
