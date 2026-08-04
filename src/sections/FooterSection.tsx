@@ -47,10 +47,10 @@ export default function FooterSection(){
         </div>
 
         <div className="border-t border-white/10 pt-6 flex flex-col md:flex-row items-center justify-between gap-3">
-        <p className="text-xs text-white/40">
+        <p className="text-xs text-white/60">
             © 2026 White Fox Energy · Instalaciones solares en Alicante, Murcia y Vega Baja · Todos los derechos reservados
         </p>
-        <div className="flex items-center gap-1.5 text-xs text-white/40">
+        <div className="flex items-center gap-1.5 text-xs text-white/60">
             <Lock size={10} className="text-accent" /> Sitio seguro · RGPD · LOPDGDD · LSSI-CE
         </div>
         </div>
