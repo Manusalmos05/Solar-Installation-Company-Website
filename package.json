@@ -4,8 +4,9 @@
   "version": "0.0.1",
   "type": "module",
   "scripts": {
-    "build": "npm run build:client && npm run build:ssr && npm run prerender",
+    "build": "npm run build:client && npm run build:fallback && npm run build:ssr && npm run prerender",
     "build:client": "vite build",
+    "build:fallback": "cp docs/index.html docs/404.html",
     "build:ssr": "vite build --ssr src/entry-server.tsx --outDir .ssr-tmp",
     "prerender": "node scripts/prerender.mjs",
     "dev": "vite",
@@ -51,6 +52,7 @@
     "date-fns": "3.6.0",
     "embla-carousel-react": "^8.6.0",
     "input-otp": "1.4.2",
+    "katex": "^0.18.1",
     "lucide-react": "0.487.0",
     "motion": "12.23.24",
     "next-themes": "0.4.6",

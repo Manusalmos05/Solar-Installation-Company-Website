@@ -1,0 +1,102 @@
+<p class="article-lead">
+  Una batería convierte tu instalación de «ahorro al mediodía» en «ahorro casi total». Pero elegir capacidad a
+  ojo sale caro: quedarse corto desperdicia excedentes y pasarse alarga la amortización años. Aquí va el método
+  que usamos en White Fox Energy para dimensionarla.
+</p>
+
+<figure class="article-figure">
+  <img src="/images/bateria.jpg" alt="Batería de litio instalada junto al inversor" loading="lazy" />
+  <figcaption>Batería de litio de 5 kWh junto al inversor híbrido, en una instalación White Fox Energy.</figcaption>
+</figure>
+
+<h2>kWh nominales no son kWh útiles</h2>
+<p>
+  El dato de catálogo es la capacidad <strong>nominal</strong>. La energía que de verdad puedes usar depende
+  de la <strong>profundidad de descarga</strong> (\(DoD\), <em>depth of discharge</em>) que admite la química
+  de la batería sin degradarse:
+</p>
+
+<div class="article-formula">
+  $$ C_{util} = C_{nominal} \cdot DoD $$
+</div>
+
+<div class="article-callout">
+  <p><strong>Ojo con las comparaciones:</strong> una batería de litio de 5 kWh (DoD 90 %) entrega 4,5 kWh útiles.
+  Una de plomo-ácido de 5 kWh (DoD 50 %) entrega solo 2,5 kWh. Mismo «tamaño», la mitad de energía real.</p>
+</div>
+
+<h2>Litio vs. plomo-ácido, en frío</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Criterio</th>
+      <th>Litio (LiFePO₄)</th>
+      <th>Plomo-ácido (AGM/GEL)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Profundidad de descarga</td>
+      <td>80–95 %</td>
+      <td>40–50 %</td>
+    </tr>
+    <tr>
+      <td>Ciclos de vida</td>
+      <td>4.000–6.000</td>
+      <td>500–1.200</td>
+    </tr>
+    <tr>
+      <td>Eficiencia de ciclo</td>
+      <td>~95 %</td>
+      <td>~80 %</td>
+    </tr>
+    <tr>
+      <td>Mantenimiento</td>
+      <td>Ninguno</td>
+      <td>Periódico</td>
+    </tr>
+    <tr>
+      <td>Precio por kWh útil</td>
+      <td>Mayor inicial, menor a 10 años</td>
+      <td>Menor inicial, mayor a 10 años</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>La fórmula de capacidad</h2>
+<p>
+  Estima cuánta energía consumes cuando no hay sol (tarde-noche), \(E_{noche}\), y cuántos días de autonomía
+  \(d\) quieres cubrir (en conexión a red, con 1 basta; en aislada, 2–3):
+</p>
+
+<div class="article-formula">
+  $$ C_{nominal} = \frac{E_{noche} \cdot d}{DoD \cdot \eta} $$
+</div>
+
+<p>
+  donde \(\eta\) es la eficiencia de ciclo. Ejemplo: 4 kWh nocturnos, 1 día de autonomía, litio con
+  \(DoD = 0{,}9\) y \(\eta = 0{,}95\):
+</p>
+
+<div class="article-formula">
+  $$ C_{nominal} = \frac{4 \cdot 1}{0{,}9 \cdot 0{,}95} \approx 4{,}7 \text{ kWh} \;\Rightarrow\; \text{batería comercial de } 5 \text{ kWh} $$
+</div>
+
+<h2>¿Batería sí o no?</h2>
+<ul>
+  <li><strong>Sí</strong>, si tu consumo nocturno supera el 40 % del total, tienes tarifa cara en punta o cortes frecuentes.</li>
+  <li><strong>Espera</strong>, si la compensación de excedentes ya te deja la factura casi a cero: añade la batería cuando el precio por kWh siga bajando.</li>
+  <li><strong>Imprescindible</strong> en instalaciones aisladas (off-grid), donde la batería es el corazón del sistema.</li>
+</ul>
+
+<figure class="article-figure">
+  <img src="/images/6kw(off-grid)_kit.png" alt="Kit solar aislado de 6 kW con baterías" loading="lazy" />
+  <figcaption>Kit off-grid de 6 kW: en aislada, la capacidad se dimensiona con 2–3 días de autonomía.</figcaption>
+</figure>
+
+<h2>Nuestro consejo</h2>
+<p>
+  Dimensiona la batería con datos reales: un mes de curva horaria de tu contador (la app de tu distribuidora
+  la exporta) vale más que cualquier regla general. Si quieres, en el
+  <a href="/#contacto">estudio gratuito</a> lo calculamos contigo.
+</p>
