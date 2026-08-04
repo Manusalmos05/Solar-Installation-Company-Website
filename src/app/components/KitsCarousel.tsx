@@ -1,7 +1,7 @@
 import { useCallback } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import { ChevronLeft, ChevronRight, ArrowRight } from "lucide-react";
-import { KITS } from "../../data/kits.ts";
+import { KITS, formatPrice } from "../../data/kits.ts";
 
 export default function KitsCarousel() {
   const [emblaRef, emblaApi] = useEmblaCarousel({
@@ -58,6 +58,12 @@ export default function KitsCarousel() {
                         className="max-h-full max-w-full object-contain transition-transform duration-300 hover:scale-105"
                     />
                 </div>
+                <div className="px-6 pt-5 text-center">
+                  <h3 className="font-bold text-lg text-primary">{k.title}</h3>
+                  <p className="text-2xl font-extrabold text-primary mt-1">{formatPrice(k.price)}</p>
+                  <p className="text-xs text-muted-foreground mt-1">IVA incluido · Envío e instalación se presupuestan aparte</p>
+                </div>
+
                   <div className="flex justify-center w-full">
                   <a
                       href="#contacto"
