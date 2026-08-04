@@ -57,7 +57,7 @@ export default function KitsCarousel() {
               <h3 className="text-lg font-bold text-white">{k.title}</h3>
               <p className="mt-1 text-2xl font-extrabold text-white">{formatPrice(k.price)}</p>
               <p className="mt-1 text-xs text-white/70">
-                IVA incluido · Envío e instalación se presupuestan aparte
+                IVA incluido
               </p>
             </div>
           ))}
