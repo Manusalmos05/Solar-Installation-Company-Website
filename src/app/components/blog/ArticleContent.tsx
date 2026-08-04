@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { readArticleHtml } from "../../../lib/articleHtml.ts";
 // @ts-ignore
 import "../../../styles/blog.css";
 
@@ -7,12 +8,20 @@ interface ArticleContentProps {
 }
 
 export default function ArticleContent({ slug }: ArticleContentProps) {
-  const [html, setHtml] = useState<string | null>(null);
+  const [html, setHtml] = useState<string | null>(() => readArticleHtml(slug));
   const [error, setError] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     let cancelled = false;
+
+    const seeded = readArticleHtml(slug);
+    if (seeded !== null) {
+      setHtml(seeded);
+      setError(false);
+      return;
+    }
+
     setHtml(null);
     setError(false);
 
