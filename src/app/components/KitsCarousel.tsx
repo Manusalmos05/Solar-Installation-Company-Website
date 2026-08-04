@@ -35,17 +35,9 @@ export default function KitsCarousel() {
   return (
     <div>
 
-      <div className="relative -mt-6 mb-10">
+      <div className="-mt-6 mb-10">
 
-        <button
-          onClick={scrollPrev}
-          aria-label="Ver kit anterior"
-          className="group absolute left-0 top-1/2 z-20 -translate-y-1/2 rounded-full bg-white/10 p-2.5 transition-colors hover:bg-white sm:p-3"
-        >
-          <ChevronLeft className="text-white transition-colors group-hover:text-primary" />
-        </button>
-
-        <div className="grid px-12 sm:px-16">
+        <div className="grid">
           {KITS.map((k, i) => (
             <div
               key={k.title}
@@ -63,22 +55,24 @@ export default function KitsCarousel() {
           ))}
         </div>
 
-        <button
-          onClick={scrollNext}
-          aria-label="Ver kit siguiente"
-          className="group absolute right-0 top-1/2 z-20 -translate-y-1/2 rounded-full bg-white/10 p-2.5 transition-colors hover:bg-white sm:p-3"
-        >
-          <ChevronRight className="text-white transition-colors group-hover:text-primary" />
-        </button>
-
       </div>
 
-      <div className="overflow-hidden" ref={emblaRef}>
-        <div className="flex">
+      <div className="relative pb-14 lg:pb-12">
+
+        <button
+          onClick={scrollPrev}
+          aria-label="Ver kit anterior"
+          className="group absolute bottom-0 left-0 z-20 rounded-full bg-primary p-2.5 shadow-lg transition-colors hover:bg-white lg:bottom-auto lg:top-[calc(50%-1.5rem)] lg:-translate-y-1/2 lg:p-3"
+        >
+          <ChevronLeft className="text-white transition-colors group-hover:text-primary" />
+        </button>
+
+        <div className="overflow-hidden" ref={emblaRef}>
+          <div className="flex">
           {KITS.map((k) => {
             const spec = k.slug ? KIT_SPECS[k.slug] : undefined;
             return (
-              <div key={k.title} className="flex-[0_0_100%] px-1 sm:px-4 lg:px-8">
+              <div key={k.title} className="flex-[0_0_100%] px-1 sm:px-4 lg:px-12">
                 {spec ? (
                   <KitInfographic spec={spec} price={k.price} />
                 ) : (
@@ -92,20 +86,29 @@ export default function KitsCarousel() {
                         className="max-h-full max-w-full object-contain transition-transform duration-300 hover:scale-105"
                       />
                     </div>
-                    <div className="flex w-full justify-center">
-                      <a
-                        href="#contacto"
-                        className="mb-4 mt-4 inline-flex items-center gap-2 rounded-xl bg-accent px-5 py-3 font-semibold text-white transition hover:bg-accent/90"
-                      >
-                        Solicitar presupuesto <ArrowRight size={18} />
-                      </a>
-                    </div>
                   </div>
                 )}
               </div>
             );
           })}
+          </div>
         </div>
+
+        <button
+          onClick={scrollNext}
+          aria-label="Ver kit siguiente"
+          className="group absolute bottom-0 right-0 z-20 rounded-full bg-primary p-2.5 shadow-lg transition-colors hover:bg-white lg:bottom-auto lg:top-[calc(50%-1.5rem)] lg:-translate-y-1/2 lg:p-3"
+        >
+          <ChevronRight className="text-white transition-colors group-hover:text-primary" />
+        </button>
+
+
+        <a
+          href="#contacto"
+          className="absolute bottom-0 left-1/2 z-20 inline-flex -translate-x-1/2 items-center gap-2 rounded-xl bg-accent px-6 py-3 font-semibold text-white shadow-lg transition hover:bg-accent/90 lg:py-2.5"
+        >
+          Solicitar presupuesto <ArrowRight size={18} />
+        </a>
       </div>
 
     </div>

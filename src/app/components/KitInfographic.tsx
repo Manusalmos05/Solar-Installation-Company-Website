@@ -8,7 +8,6 @@ import {
   BatteryCharging,
   ClipboardList,
   Check,
-  ArrowRight,
 } from "lucide-react";
 import type { IconName, KitSpec } from "../../data/kitSpecs.ts";
 import { formatPrice } from "../../data/kits.ts";
@@ -49,7 +48,7 @@ function Panel({ title, children }: { title: string; children: React.ReactNode }
 export default function KitInfographic({ spec, price }: { spec: KitSpec; price: number }) {
   return (
     <article className="overflow-hidden rounded-2xl bg-white text-left text-primary shadow-xl">
-      <div className="p-5 sm:p-7 lg:p-5 xl:p-7">
+      <div className="p-5 sm:p-7 lg:p-4 xl:p-7">
         <div className="grid gap-6 lg:grid-cols-[0.92fr_1.18fr_0.9fr] lg:gap-5 xl:gap-7">
 
           <div className="flex flex-col gap-4 lg:gap-3">
@@ -191,16 +190,10 @@ export default function KitInfographic({ spec, price }: { spec: KitSpec; price: 
               ))}
             </div>
 
-            <a
-              href="#contacto"
-              className="mt-auto inline-flex items-center justify-center gap-2 rounded-xl bg-accent px-5 py-3 font-semibold text-white transition hover:bg-accent/90 lg:py-2.5 lg:text-sm"
-            >
-              Solicitar presupuesto <ArrowRight size={17} />
-            </a>
-
           </div>
 
         </div>
+
       </div>
     </article>
   );
