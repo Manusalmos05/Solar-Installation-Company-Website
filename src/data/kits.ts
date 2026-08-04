@@ -2,10 +2,11 @@ export type Kit = {
   img: string;
   title: string;
   price: number;
+  slug?: string;
 };
 
 export const KITS: Kit[] = [
-  { img: "images/3kw_kit.png", title: "Kit solar híbrido 3 kW", price: 6500 },
+  { img: "images/3kw_kit.png", title: "Kit solar híbrido 3 kW", price: 6500, slug: "3kw-hibrido" },
   { img: "images/6kw_kit.png", title: "Kit solar 6 kW", price: 7800 },
   { img: "images/6kw(off-grid)_kit.png", title: "Kit solar off-grid 6 kW", price: 8400 },
   { img: "images/8kw_kit.png", title: "Kit solar híbrido 8 kW", price: 10800 },

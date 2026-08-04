@@ -2,6 +2,8 @@ import { useCallback, useEffect, useState } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import { ChevronLeft, ChevronRight, ArrowRight } from "lucide-react";
 import { KITS, formatPrice } from "../../data/kits.ts";
+import { KIT_SPECS } from "../../data/kitSpecs.ts";
+import KitInfographic from "./KitInfographic.tsx";
 
 export default function KitsCarousel() {
   const [emblaRef, emblaApi] = useEmblaCarousel({
@@ -33,72 +35,79 @@ export default function KitsCarousel() {
   return (
     <div>
 
-      <div className="grid -mt-6 mb-10">
-        {KITS.map((k, i) => (
-          <div
-            key={k.title}
-            aria-hidden={i !== selected}
-            className={`col-start-1 row-start-1 text-center transition-opacity duration-300 ease-out ${
-              i === selected ? "opacity-100" : "opacity-0 pointer-events-none"
-            }`}
-          >
-            <h3 className="font-bold text-lg text-white">{k.title}</h3>
-            <p className="text-2xl font-extrabold text-white mt-1">{formatPrice(k.price)}</p>
-            <p className="text-xs text-white/70 mt-1">IVA incluido · Envío e instalación se presupuestan aparte</p>
-          </div>
-        ))}
-      </div>
-
-      <div className="relative">
+      <div className="relative -mt-6 mb-10">
 
         <button
           onClick={scrollPrev}
           aria-label="Ver kit anterior"
-          className="group absolute left-0 top-1/2 -translate-y-1/2 z-20 rounded-full bg-primary shadow-lg p-3 hover:bg-gray-100"
+          className="group absolute left-0 top-1/2 z-20 -translate-y-1/2 rounded-full bg-white/10 p-2.5 transition-colors hover:bg-white sm:p-3"
         >
-          <ChevronLeft className="text-white group-hover:text-primary transition-colors" />
+          <ChevronLeft className="text-white transition-colors group-hover:text-primary" />
         </button>
 
-        <div className="overflow-hidden" ref={emblaRef}>
-          <div className="flex">
-            {KITS.map((k) => (
-              <div key={k.title} className="flex-[0_0_100%] px-10">
-                <div className="rounded-2xl shadow-xl overflow-hidden bg-white h-full">
-
-                  <div className="h-[550px] flex items-center justify-center bg-white">
-                    <img
-                      src={k.img}
-                      alt={k.title}
-                      loading="lazy"
-                      decoding="async"
-                      className="max-h-full max-w-full object-contain transition-transform duration-300 hover:scale-105"
-                    />
-                  </div>
-
-                  <div className="flex justify-center w-full">
-                    <a
-                      href="#contacto"
-                      className="inline-flex items-center gap-2 rounded-xl bg-accent mt-4 mb-4 px-5 py-3 text-white font-semibold hover:bg-accent/90 transition"
-                    >
-                      Solicitar presupuesto <ArrowRight size={18} />
-                    </a>
-                  </div>
-
-                </div>
-              </div>
-            ))}
-          </div>
+        <div className="grid px-12 sm:px-16">
+          {KITS.map((k, i) => (
+            <div
+              key={k.title}
+              aria-hidden={i !== selected}
+              className={`col-start-1 row-start-1 text-center transition-opacity duration-300 ease-out ${
+                i === selected ? "opacity-100" : "opacity-0 pointer-events-none"
+              }`}
+            >
+              <h3 className="text-lg font-bold text-white">{k.title}</h3>
+              <p className="mt-1 text-2xl font-extrabold text-white">{formatPrice(k.price)}</p>
+              <p className="mt-1 text-xs text-white/70">
+                IVA incluido · Envío e instalación se presupuestan aparte
+              </p>
+            </div>
+          ))}
         </div>
 
         <button
           onClick={scrollNext}
           aria-label="Ver kit siguiente"
-          className="group absolute right-0 top-1/2 -translate-y-1/2 z-20 rounded-full bg-primary shadow-lg p-3 hover:bg-gray-100"
+          className="group absolute right-0 top-1/2 z-20 -translate-y-1/2 rounded-full bg-white/10 p-2.5 transition-colors hover:bg-white sm:p-3"
         >
-          <ChevronRight className="text-white group-hover:text-primary transition-colors" />
+          <ChevronRight className="text-white transition-colors group-hover:text-primary" />
         </button>
 
       </div>
+
+      <div className="overflow-hidden" ref={emblaRef}>
+        <div className="flex">
+          {KITS.map((k) => {
+            const spec = k.slug ? KIT_SPECS[k.slug] : undefined;
+            return (
+              <div key={k.title} className="flex-[0_0_100%] px-1 sm:px-4 lg:px-8">
+                {spec ? (
+                  <KitInfographic spec={spec} price={k.price} />
+                ) : (
+                  <div className="h-full overflow-hidden rounded-2xl bg-white shadow-xl">
+                    <div className="flex h-[420px] items-center justify-center bg-white sm:h-[550px]">
+                      <img
+                        src={k.img}
+                        alt={k.title}
+                        loading="lazy"
+                        decoding="async"
+                        className="max-h-full max-w-full object-contain transition-transform duration-300 hover:scale-105"
+                      />
+                    </div>
+                    <div className="flex w-full justify-center">
+                      <a
+                        href="#contacto"
+                        className="mb-4 mt-4 inline-flex items-center gap-2 rounded-xl bg-accent px-5 py-3 font-semibold text-white transition hover:bg-accent/90"
+                      >
+                        Solicitar presupuesto <ArrowRight size={18} />
+                      </a>
+                    </div>
+                  </div>
+                )}
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
     </div>
   );
 }
