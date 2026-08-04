@@ -90,15 +90,22 @@ function applyHead(html, route) {
   out = replaceOnce(out, /<meta name="twitter:description" content="[^"]*"\s*\/>/, `<meta name="twitter:description" content="${escAttr(route.description)}" />`, "twitter:description");
   out = replaceOnce(out, /<meta name="twitter:image" content="[^"]*"\s*\/>/, `<meta name="twitter:image" content="${escAttr(route.image)}" />`, "twitter:image");
 
+  const extra = [];
+
   if (route.published) {
-    const extra = [
-      `<meta property="article:published_time" content="${escAttr(route.published)}" />`,
-      route.lastmod ? `<meta property="article:modified_time" content="${escAttr(route.lastmod)}" />` : "",
-    ]
-      .filter(Boolean)
-      .map((tag) => `      ${tag}`)
-      .join("\n");
-    out = replaceOnce(out, /<\/head>/, `${extra}\n\n    </head>`, "</head>");
+    extra.push(`<meta property="article:published_time" content="${escAttr(route.published)}" />`);
+    if (route.lastmod) {
+      extra.push(`<meta property="article:modified_time" content="${escAttr(route.lastmod)}" />`);
+    }
+  }
+
+  if (route.jsonLd) {
+    extra.push(`<script type="application/ld+json">${forScript(route.jsonLd)}</script>`);
+  }
+
+  if (extra.length > 0) {
+    const block = extra.map((tag) => `      ${tag}`).join("\n");
+    out = replaceOnce(out, /<\/head>/, `${block}\n\n    </head>`, "</head>");
   }
 
   return out;

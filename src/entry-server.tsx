@@ -3,12 +3,18 @@ import { StaticRouter } from "react-router";
 import App from "./app/App.tsx";
 import { ARTICLES } from "./data/blog.ts";
 import { seedArticleHtml } from "./lib/articleHtml.ts";
+import { articleGraph, blogGraph, homeGraph } from "./lib/structuredData.ts";
+import {
+  SITE,
+  BRAND,
+  OG_IMAGE,
+  OG_IMAGE_ALT,
+  INDEXABLE,
+  BLOG_NAME,
+  BLOG_DESCRIPTION,
+  BUSINESS_DESCRIPTION,
+} from "./lib/site.ts";
 
-const SITE = "https://www.wf-energy.com";
-const BRAND = "White Fox Energy";
-const OG_IMAGE = `${SITE}/images/og-image.jpg`;
-const OG_IMAGE_ALT = "Instalación de placas solares fotovoltaicas en una vivienda";
-const INDEXABLE = "index, follow, max-image-preview:large, max-snippet:-1";
 const BRAND_SUFFIX_LIMIT = 45;
 const DESCRIPTION_LIMIT = 155;
 
@@ -26,6 +32,7 @@ export interface PrerenderRoute {
   lastmod: string | null;
   published: string | null;
   sitemap: boolean;
+  jsonLd: unknown | null;
 }
 
 function withBrand(title: string): string {
@@ -51,8 +58,7 @@ export function getRoutes(): PrerenderRoute[] {
       path: "/",
       out: "index.html",
       title: `Placas Solares en Alicante y Murcia | ${BRAND}`,
-      description:
-        "Instalación de placas solares, baterías, cargadores de coche eléctrico y domótica en Alicante, Murcia y la Vega Baja. Estudio y presupuesto gratis en 24 h.",
+      description: BUSINESS_DESCRIPTION,
       canonical: `${SITE}/`,
       ogType: "website",
       image: OG_IMAGE,
@@ -62,13 +68,13 @@ export function getRoutes(): PrerenderRoute[] {
       lastmod: null,
       published: null,
       sitemap: true,
+      jsonLd: homeGraph(),
     },
     {
       path: "/blog",
       out: "blog/index.html",
-      title: `Blog de autoconsumo solar | ${BRAND}`,
-      description:
-        "Guías prácticas sobre placas solares, baterías, cargadores y fiscalidad del autoconsumo en Alicante, Murcia y la Vega Baja, escritas por instaladores.",
+      title: `${BLOG_NAME} | ${BRAND}`,
+      description: BLOG_DESCRIPTION,
       canonical: `${SITE}/blog/`,
       ogType: "website",
       image: OG_IMAGE,
@@ -78,6 +84,7 @@ export function getRoutes(): PrerenderRoute[] {
       lastmod: newestArticleDate || null,
       published: null,
       sitemap: true,
+      jsonLd: blogGraph(),
     },
     ...ARTICLES.map((a) => ({
       path: `/blog/${a.slug}`,
@@ -93,6 +100,7 @@ export function getRoutes(): PrerenderRoute[] {
       lastmod: a.date,
       published: a.date,
       sitemap: true,
+      jsonLd: articleGraph(a),
     })),
     {
       path: "/pagina-que-no-existe",
@@ -108,6 +116,7 @@ export function getRoutes(): PrerenderRoute[] {
       lastmod: null,
       published: null,
       sitemap: false,
+      jsonLd: null,
     },
   ];
 }

@@ -4,9 +4,12 @@ import { BlogArticle, formatDate } from "../../../data/blog";
 
 interface ArticleCardProps {
   article: BlogArticle;
+  headingLevel?: 2 | 3;
 }
 
-export default function ArticleCard({ article }: ArticleCardProps) {
+export default function ArticleCard({ article, headingLevel = 3 }: ArticleCardProps) {
+  const Heading = `h${headingLevel}` as "h2" | "h3";
+
   return (
     <Link
       to={`/blog/${article.slug}`}
@@ -30,9 +33,9 @@ export default function ArticleCard({ article }: ArticleCardProps) {
           ))}
         </div>
 
-        <h3 className="font-bold text-foreground text-base leading-snug mb-2 group-hover:text-accent transition-colors">
+        <Heading className="font-bold text-foreground text-base leading-snug mb-2 group-hover:text-accent transition-colors">
           {article.title}
-        </h3>
+        </Heading>
         <p className="text-sm text-muted-foreground line-clamp-3 mb-4">{article.excerpt}</p>
 
         <div className="mt-auto flex items-center gap-4 text-xs text-muted-foreground">
