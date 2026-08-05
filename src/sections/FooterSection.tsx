@@ -1,5 +1,6 @@
 import { useState } from "react";
 import {Sun,Phone,Mail,MapPin,Lock} from "lucide-react"
+import { EMAIL, PHONE_DISPLAY } from "../lib/site.ts";
 
 export default function FooterSection(){
     return(
@@ -39,8 +40,8 @@ export default function FooterSection(){
         <div>
             <p className="font-semibold text-sm mb-4">Contacto</p>
             <ul className="space-y-2 text-xs text-white/60">
-            <li className="flex items-center gap-2"><Phone size={11} /> 743098335</li>
-            <li className="flex items-center gap-2"><Mail size={11} /> info@wf-energy.com</li>
+            <li className="flex items-center gap-2"><Phone size={11} /> {PHONE_DISPLAY}</li>
+            <li className="flex items-center gap-2"><Mail size={11} /> {EMAIL}</li>
             <li className="flex items-center gap-2"><MapPin size={11} /> Alicante · Murcia · Vega Baja</li>
             </ul>
         </div>

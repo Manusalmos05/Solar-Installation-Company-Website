@@ -1,8 +1,11 @@
 export const SITE = "https://www.wf-energy.com";
 export const BRAND = "White Fox Energy";
 export const PHONE = "+34743098335";
+export const PHONE_DISPLAY = PHONE.replace("+34", "");
+export const TEL_HREF = `tel:${PHONE}`;
 export const EMAIL = "info@wf-energy.com";
-export const WHATSAPP = "https://wa.me/34743098335";
+export const MAILTO_HREF = `mailto:${EMAIL}`;
+export const WHATSAPP = `https://wa.me/${PHONE.replace("+", "")}`;
 export const LOGO = `${SITE}/icon.svg`;
 export const OG_IMAGE = `${SITE}/images/og-image.jpg`;
 export const OG_IMAGE_ALT = "Instalación de placas solares fotovoltaicas en una vivienda";

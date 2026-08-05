@@ -10,6 +10,7 @@ import HomePage from "../pages/HomePage.tsx";
 import BlogPage from "../pages/BlogPage.tsx";
 import ArticlePage from "../pages/ArticlePage.tsx";
 import NotFoundPage from "../pages/NotFoundPage.tsx";
+import { TEL_HREF, WHATSAPP } from "../lib/site.ts";
 
 export default function App() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -27,14 +28,14 @@ export default function App() {
 
       <div className="fixed bottom-6 right-4 z-50 flex flex-col gap-3" style={{ bottom: cookieAccepted ? "1.5rem" : "5.5rem" }}>
         <a
-          href="tel:+34743098335"
+          href={TEL_HREF}
           className="w-12 h-12 rounded-full bg-primary text-primary-foreground flex items-center justify-center shadow-lg hover:scale-110 transition-transform"
           title="Llamar ahora"
         >
           <Phone size={18} />
         </a>
         <a
-          href="https://wa.me/34743098335"
+          href={WHATSAPP}
           className="w-12 h-12 rounded-full bg-accent text-accent-foreground flex items-center justify-center shadow-lg hover:scale-110 transition-transform"
           title="WhatsApp"
         >

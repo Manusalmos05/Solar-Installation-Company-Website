@@ -6,6 +6,7 @@ import {
   Phone,Mail,MapPin,Clock,ArrowRight,MessageCircle, Check, Lock,
   Loader2
 } from "lucide-react";
+import { EMAIL, MAILTO_HREF, PHONE_DISPLAY, TEL_HREF, WHATSAPP } from "../lib/site.ts";
 const SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
 const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
 const PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
@@ -64,9 +65,9 @@ export default function ContactSection(){
 
         <div className="space-y-4 mb-8">
         {[
-            { Icon: Phone, label: "743098335", href: "tel:+34743098335" },
-            { Icon: MessageCircle, label: "WhatsApp: 743098335", href: "https://wa.me/34743098335" },
-            { Icon: Mail, label: "info@wf-energy.com", href: "mailto:info@wf-energy.com" },
+            { Icon: Phone, label: PHONE_DISPLAY, href: TEL_HREF },
+            { Icon: MessageCircle, label: `WhatsApp: ${PHONE_DISPLAY}`, href: WHATSAPP },
+            { Icon: Mail, label: EMAIL, href: MAILTO_HREF },
             { Icon: MapPin, label: "Alicante · Murcia · Vega Baja del Segura", href: "#" },
             { Icon: Clock, label: "Lun–Vie 8:30–18:30 · Sáb 9:00–14:00", href: "#" },
         ].map(({ Icon, label, href }) => (
