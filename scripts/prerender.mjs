@@ -62,53 +62,73 @@ for (const marker of [ROOT_MARKER, MODULE_MARKER]) {
   }
 }
 
-const { render, getRoutes } = await import(pathToFileURL(serverEntry).href);
+const { render, getRoutes, getSiteMeta } = await import(pathToFileURL(serverEntry).href);
 
-if (typeof getRoutes !== "function") {
-  fail("entry-server no exporta getRoutes.");
+for (const [name, fn] of [["getRoutes", getRoutes], ["getSiteMeta", getSiteMeta], ["render", render]]) {
+  if (typeof fn !== "function") {
+    fail(`entry-server no exporta ${name}.`);
+  }
 }
 
-function applyHead(html, route) {
-  let out = html;
+const siteMeta = getSiteMeta();
 
-  out = replaceOnce(out, /<title>[\s\S]*?<\/title>/, `<title>${escText(route.title)}</title>`, "<title>");
-  out = replaceOnce(out, /<meta name="description" content="[^"]*"\s*\/>/, `<meta name="description" content="${escAttr(route.description)}" />`, 'meta name="description"');
-  out = replaceOnce(out, /<meta name="robots" content="[^"]*"\s*\/>/, `<meta name="robots" content="${escAttr(route.robots)}" />`, 'meta name="robots"');
-  out = replaceOnce(
-    out,
-    /<link rel="canonical" href="[^"]*"\s*\/>/,
-    route.canonical ? `<link rel="canonical" href="${escAttr(route.canonical)}" />` : "",
-    'link rel="canonical"',
+function buildHead(route, meta) {
+  const tags = [
+    `<meta name="description" content="${escAttr(route.description)}" />`,
+    `<meta name="robots" content="${escAttr(route.robots)}" />`,
+  ];
+
+  if (route.canonical) {
+    tags.push(`<link rel="canonical" href="${escAttr(route.canonical)}" />`);
+  }
+
+  tags.push(
+    "",
+    `<meta property="og:type" content="${escAttr(route.ogType)}" />`,
+    `<meta property="og:site_name" content="${escAttr(meta.siteName)}" />`,
+    `<meta property="og:locale" content="${escAttr(meta.ogLocale)}" />`,
+    `<meta property="og:url" content="${escAttr(route.canonical ?? `${route.image}`)}" />`,
+    `<meta property="og:title" content="${escAttr(route.title)}" />`,
+    `<meta property="og:description" content="${escAttr(route.description)}" />`,
+    `<meta property="og:image" content="${escAttr(route.image)}" />`,
+    `<meta property="og:image:alt" content="${escAttr(route.imageAlt)}" />`,
   );
-  out = replaceOnce(out, /<meta property="og:type" content="[^"]*"\s*\/>/, `<meta property="og:type" content="${escAttr(route.ogType)}" />`, "og:type");
-  out = replaceOnce(out, /<meta property="og:url" content="[^"]*"\s*\/>/, `<meta property="og:url" content="${escAttr(route.canonical ?? route.image)}" />`, "og:url");
-  out = replaceOnce(out, /<meta property="og:title" content="[^"]*"\s*\/>/, `<meta property="og:title" content="${escAttr(route.title)}" />`, "og:title");
-  out = replaceOnce(out, /<meta property="og:description" content="[^"]*"\s*\/>/, `<meta property="og:description" content="${escAttr(route.description)}" />`, "og:description");
-  out = replaceOnce(out, /<meta property="og:image" content="[^"]*"\s*\/>/, `<meta property="og:image" content="${escAttr(route.image)}" />`, "og:image");
-  out = replaceOnce(out, /<meta property="og:image:alt" content="[^"]*"\s*\/>/, `<meta property="og:image:alt" content="${escAttr(route.imageAlt)}" />`, "og:image:alt");
-  out = replaceOnce(out, /<meta name="twitter:title" content="[^"]*"\s*\/>/, `<meta name="twitter:title" content="${escAttr(route.title)}" />`, "twitter:title");
-  out = replaceOnce(out, /<meta name="twitter:description" content="[^"]*"\s*\/>/, `<meta name="twitter:description" content="${escAttr(route.description)}" />`, "twitter:description");
-  out = replaceOnce(out, /<meta name="twitter:image" content="[^"]*"\s*\/>/, `<meta name="twitter:image" content="${escAttr(route.image)}" />`, "twitter:image");
-
-  const extra = [];
 
   if (route.published) {
-    extra.push(`<meta property="article:published_time" content="${escAttr(route.published)}" />`);
+    tags.push(`<meta property="article:published_time" content="${escAttr(route.published)}" />`);
     if (route.lastmod) {
-      extra.push(`<meta property="article:modified_time" content="${escAttr(route.lastmod)}" />`);
+      tags.push(`<meta property="article:modified_time" content="${escAttr(route.lastmod)}" />`);
     }
   }
 
+  tags.push(
+    "",
+    `<meta name="twitter:card" content="${escAttr(meta.twitterCard)}" />`,
+    `<meta name="twitter:title" content="${escAttr(route.title)}" />`,
+    `<meta name="twitter:description" content="${escAttr(route.description)}" />`,
+    `<meta name="twitter:image" content="${escAttr(route.image)}" />`,
+  );
+
   if (route.jsonLd) {
-    extra.push(`<script type="application/ld+json">${forScript(route.jsonLd)}</script>`);
+    tags.push("", `<script type="application/ld+json">${forScript(route.jsonLd)}</script>`);
   }
 
-  if (extra.length > 0) {
-    const block = extra.map((tag) => `      ${tag}`).join("\n");
-    out = replaceOnce(out, /<\/head>/, `${block}\n\n    </head>`, "</head>");
-  }
+  return tags.map((tag) => (tag === "" ? "" : `      ${tag}`)).join("\n");
+}
 
-  return out;
+function applyHead(html, route, meta) {
+  const withTitle = replaceOnce(
+    html,
+    /<title>[\s\S]*?<\/title>/,
+    `<title>${escText(route.title)}</title>`,
+    "<title>",
+  );
+  return replaceOnce(
+    withTitle,
+    /[ \t]*\n?[ \t]*<\/head>/,
+    `\n\n${buildHead(route, meta)}\n\n    </head>`,
+    "</head>",
+  );
 }
 
 const routes = getRoutes();
@@ -131,7 +151,7 @@ for (const route of routes) {
     fail(`el render de ${route.path} devolvió ${appHtml ? `${appHtml.length} bytes` : "nada"}.`);
   }
 
-  let out = applyHead(shell, route);
+  let out = applyHead(shell, route, siteMeta);
   out = out.replace(ROOT_MARKER, () => `<div id="root">${appHtml}</div>`);
 
   if (Object.keys(preloaded).length > 0) {

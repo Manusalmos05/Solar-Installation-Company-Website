@@ -9,11 +9,23 @@ import {
   BRAND,
   OG_IMAGE,
   OG_IMAGE_ALT,
+  OG_LOCALE,
+  TWITTER_CARD,
   INDEXABLE,
   BLOG_NAME,
   BLOG_DESCRIPTION,
   BUSINESS_DESCRIPTION,
 } from "./lib/site.ts";
+
+export interface SiteMeta {
+  siteName: string;
+  ogLocale: string;
+  twitterCard: string;
+}
+
+export function getSiteMeta(): SiteMeta {
+  return { siteName: BRAND, ogLocale: OG_LOCALE, twitterCard: TWITTER_CARD };
+}
 
 const BRAND_SUFFIX_LIMIT = 45;
 const DESCRIPTION_LIMIT = 155;

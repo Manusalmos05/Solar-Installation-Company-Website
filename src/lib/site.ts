@@ -7,6 +7,8 @@ export const LOGO = `${SITE}/icon.svg`;
 export const OG_IMAGE = `${SITE}/images/og-image.jpg`;
 export const OG_IMAGE_ALT = "Instalación de placas solares fotovoltaicas en una vivienda";
 export const LOCALE = "es-ES";
+export const OG_LOCALE = "es_ES";
+export const TWITTER_CARD = "summary_large_image";
 export const INDEXABLE = "index, follow, max-image-preview:large, max-snippet:-1";
 
 export const AREAS = ["Alicante", "Murcia", "Vega Baja del Segura"];
