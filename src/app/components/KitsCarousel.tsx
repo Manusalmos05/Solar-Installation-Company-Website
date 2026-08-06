@@ -25,7 +25,7 @@ export default function KitsCarousel() {
 
       <button
         onClick={scrollPrev}
-        className="group absolute leftt-0 top-1/2 -translate-y-1/2 z-20 rounded-full bg-primary shadow-lg p-3 hover:bg-gray-100"
+        className="group absolute left-0 top-1/2 -translate-y-1/2 z-20 rounded-full bg-primary shadow-lg p-3 hover:bg-gray-100"
       >
         <ChevronLeft className="text-white group-hover:text-primary transition-colors" />
       </button>
@@ -38,17 +38,12 @@ export default function KitsCarousel() {
           {KITS.map((k) => (
             <div
               key={k.title}
-              className="
-                flex-[0_0_100%]
-                md:flex-[0_0_100%]
-                lg:flex-[0_0_100%]
-                px-10
-              "
+              className="flex-[0_0_100%] px-2 md:px-10"
             >
 
               <div className="rounded-2xl shadow-xl overflow-hidden bg-white h-full">
 
-                <div className="h-[550px] flex items-center justify-center bg-white">
+                <div className="h-[400px] md:h-[550px] flex items-center justify-center bg-white">
                     <img
                         src={k.img}
                         alt={k.title}
