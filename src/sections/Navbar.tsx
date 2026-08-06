@@ -22,7 +22,7 @@ export default function Navbar({
         </div>
         <div>
             <span className="font-bold text-primary text-base tracking-tight">White Fox Energy</span>
-            <span className="hidden sm:inline text-xs text-muted-foreground ml-1.5">Energía Solar</span>
+            <span className="hidden sm:inline text-xs text-muted-foreground ml-1.5">Soluciones eléctricas</span>
         </div>
         </a>
 
