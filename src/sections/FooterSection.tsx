@@ -40,7 +40,7 @@ export default function FooterSection(){
             <p className="font-semibold text-sm mb-4">Contacto</p>
             <ul className="space-y-2 text-xs text-white/60">
             <li className="flex items-center gap-2"><Phone size={11} /> 743098335</li>
-            <li className="flex items-center gap-2"><Mail size={11} /> info@White Fox Energy.es</li>
+            <li className="flex items-center gap-2"><Mail size={11} /> info@wf-energy.com</li>
             <li className="flex items-center gap-2"><MapPin size={11} /> Alicante · Murcia · Vega Baja</li>
             </ul>
         </div>
@@ -48,7 +48,7 @@ export default function FooterSection(){
 
         <div className="border-t border-white/10 pt-6 flex flex-col md:flex-row items-center justify-between gap-3">
         <p className="text-xs text-white/40">
-            © 2024 White Fox Energy Instalaciones Solares S.L. · CIF B-00000000 · Todos los derechos reservados
+            © 2026 White Fox Energy Instalaciones Eléctricas S.L. · CIF B-00000000 · Todos los derechos reservados
         </p>
         <div className="flex items-center gap-1.5 text-xs text-white/40">
             <Lock size={10} className="text-accent" /> Sitio seguro · RGPD · LOPDGDD · LSSI-CE
