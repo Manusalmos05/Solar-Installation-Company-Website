@@ -59,6 +59,13 @@ function clamp(text: string, max = DESCRIPTION_LIMIT): string {
   return `${kept.replace(/[\s,;:.…-]+$/, "")}…`;
 }
 
+const LEGAL_PAGES: Array<[string, string, string]> = [
+  ["/aviso-legal", "Aviso legal", "Identificación del titular y condiciones de uso del sitio web de White Fox Energy."],
+  ["/politica-de-privacidad", "Política de privacidad", "Cómo tratamos los datos personales del formulario de contacto y qué derechos tienes."],
+  ["/politica-de-cookies", "Política de cookies", "Qué cookies usa este sitio, para qué sirven y cómo cambiar tu elección."],
+  ["/accesibilidad", "Accesibilidad", "Compromiso de accesibilidad WCAG 2.1 AA y cómo avisarnos de cualquier barrera."],
+];
+
 const articleStamp = (a: (typeof ARTICLES)[number]) =>
   a.updated && a.updated > a.date ? a.updated : a.date;
 
@@ -116,6 +123,22 @@ export function getRoutes(): PrerenderRoute[] {
       published: a.date,
       sitemap: true,
       jsonLd: articleGraph(a),
+    })),
+    ...LEGAL_PAGES.map(([path, title, description]) => ({
+      path,
+      out: `${path.slice(1)}/index.html`,
+      title: withBrand(title),
+      description,
+      canonical: `${SITE}${path}/`,
+      ogType: "website",
+      image: OG_IMAGE,
+      imageAlt: OG_IMAGE_ALT,
+      robots: INDEXABLE,
+      slugs: [],
+      lastmod: null,
+      published: null,
+      sitemap: false,
+      jsonLd: null,
     })),
     {
       path: "/pagina-que-no-existe",

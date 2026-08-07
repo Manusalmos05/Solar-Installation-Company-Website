@@ -1,8 +1,16 @@
 import { useState } from "react";
 import {Sun,Phone,Mail,MapPin,Lock} from "lucide-react"
+import { Link } from "react-router";
 import { EMAIL, PHONE_DISPLAY } from "../lib/site.ts";
 
-export default function FooterSection(){
+const LEGAL_LINKS: Array<[string, string]> = [
+  ["Política de privacidad", "/politica-de-privacidad"],
+  ["Política de cookies", "/politica-de-cookies"],
+  ["Aviso legal", "/aviso-legal"],
+  ["Accesibilidad", "/accesibilidad"],
+];
+
+export default function FooterSection({ onCookieSettings }: { onCookieSettings?: () => void }){
     return(
             <footer className="bg-primary text-primary-foreground pt-14 pb-6">
     <div className="max-w-7xl mx-auto px-5">
@@ -31,9 +39,14 @@ export default function FooterSection(){
         <div>
             <p className="font-semibold text-sm mb-4">Legal</p>
             <ul className="space-y-2 text-xs text-white/60">
-            {["Política de privacidad", "Política de cookies", "Aviso legal", "Configuración de cookies", "Accesibilidad"].map((l) => (
-                <li key={l}><a href="#" className="hover:text-white transition-colors">{l}</a></li>
+            {LEGAL_LINKS.map(([label, to]) => (
+                <li key={to}><Link to={to} className="hover:text-white transition-colors">{label}</Link></li>
             ))}
+            <li>
+                <button onClick={onCookieSettings} className="hover:text-white transition-colors">
+                    Configuración de cookies
+                </button>
+            </li>
             </ul>
         </div>
 
