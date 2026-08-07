@@ -87,7 +87,13 @@ function buildHead(route, meta) {
     `<meta property="og:type" content="${escAttr(route.ogType)}" />`,
     `<meta property="og:site_name" content="${escAttr(meta.siteName)}" />`,
     `<meta property="og:locale" content="${escAttr(meta.ogLocale)}" />`,
-    `<meta property="og:url" content="${escAttr(route.canonical ?? `${route.image}`)}" />`,
+  );
+
+  if (route.canonical) {
+    tags.push(`<meta property="og:url" content="${escAttr(route.canonical)}" />`);
+  }
+
+  tags.push(
     `<meta property="og:title" content="${escAttr(route.title)}" />`,
     `<meta property="og:description" content="${escAttr(route.description)}" />`,
     `<meta property="og:image" content="${escAttr(route.image)}" />`,

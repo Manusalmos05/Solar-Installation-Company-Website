@@ -204,7 +204,7 @@ export function articleGraph(a: BlogArticle): Node {
       description: a.excerpt,
       image: `${SITE}/${a.cover}`,
       datePublished: a.date,
-      dateModified: a.date,
+      dateModified: a.updated ?? a.date,
       inLanguage: LOCALE,
       keywords: a.tags.join(", "),
       timeRequired: `PT${a.readingMinutes}M`,

@@ -3,6 +3,7 @@ export interface BlogArticle {
   title: string;
   excerpt: string;
   date: string;
+  updated?: string;
   tags: string[];
   cover: string;
   readingMinutes: number;

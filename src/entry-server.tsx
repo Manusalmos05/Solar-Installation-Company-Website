@@ -59,9 +59,12 @@ function clamp(text: string, max = DESCRIPTION_LIMIT): string {
   return `${kept.replace(/[\s,;:.…-]+$/, "")}…`;
 }
 
+const articleStamp = (a: (typeof ARTICLES)[number]) =>
+  a.updated && a.updated > a.date ? a.updated : a.date;
+
 const newestArticleDate = ARTICLES.reduce(
-  (latest, a) => (a.date > latest ? a.date : latest),
-  ARTICLES[0]?.date ?? "",
+  (latest, a) => (articleStamp(a) > latest ? articleStamp(a) : latest),
+  ARTICLES[0] ? articleStamp(ARTICLES[0]) : "",
 );
 
 export function getRoutes(): PrerenderRoute[] {
@@ -109,7 +112,7 @@ export function getRoutes(): PrerenderRoute[] {
       imageAlt: a.title,
       robots: INDEXABLE,
       slugs: [a.slug],
-      lastmod: a.date,
+      lastmod: articleStamp(a),
       published: a.date,
       sitemap: true,
       jsonLd: articleGraph(a),
