@@ -155,7 +155,7 @@ export default function Calculator() {
                 type="checkbox"
                 checked={incluyeBateriaFisica}
                 onChange={(e) => setIncluyeBateriaFisica(e.target.checked)}
-                className="mt-0.5 w-4 h-4 accent-[#00A86B] flex-shrink-0"
+                className="mt-0.5 w-4 h-4 accent-accent flex-shrink-0"
               />
               <span className="text-muted-foreground text-xs md:text-sm font-medium">
                 Incluir batería física de almacenamiento (acumula energía para la noche)
@@ -169,7 +169,7 @@ export default function Calculator() {
                 type="checkbox"
                 checked={incluyeBateriaVirtual}
                 onChange={(e) => setIncluyeBateriaVirtual(e.target.checked)}
-                className="mt-0.5 w-4 h-4 accent-[#00A86B] flex-shrink-0"
+                className="mt-0.5 w-4 h-4 accent-accent flex-shrink-0"
               />
               <span className="text-muted-foreground text-xs md:text-sm font-medium">
                 Aprovechar Monedero / Batería Virtual (inyecta sobrantes a la red)

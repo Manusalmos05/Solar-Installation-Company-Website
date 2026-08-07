@@ -166,7 +166,7 @@ export default function ContactSection(){
                 required
                 checked={formData.privacidad}
                 onChange={(e) => setFormData({ ...formData, privacidad: e.target.checked })}
-                className="mt-0.5 w-4 h-4 accent-[#00A86B] flex-shrink-0"
+                className="mt-0.5 w-4 h-4 accent-accent flex-shrink-0"
             />
             <span className="text-xs text-muted-foreground leading-relaxed">
                 He leído y acepto la{" "}
