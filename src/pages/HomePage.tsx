@@ -11,7 +11,7 @@ import ContactSection from "../sections/ContactSection.tsx";
 
 export default function HomePage() {
   return (
-    <>
+    <main>
       <HeroSection />
       <BenefitsSection />
       <ServicesSection />
@@ -22,6 +22,6 @@ export default function HomePage() {
       <BlogSection />
       <FaqSection />
       <ContactSection />
-    </>
+    </main>
   );
 }

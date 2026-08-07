@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router";
 import { Zap, Phone, ArrowRight, Menu, X } from "lucide-react";
 import { NAV, NAV_DIR } from "../data/navigation";
+import { PHONE_DISPLAY, TEL_HREF } from "../lib/site.ts";
 
 interface NavbarProps {
   menuOpen: boolean;
@@ -42,8 +43,8 @@ export default function Navbar({
         </div>
 
         <div className="hidden lg:flex items-center gap-3">
-        <a href="tel:+34743098335" className="flex items-center gap-1.5 text-sm font-medium text-foreground hover:text-accent transition-colors">
-            <Phone size={14} /> 743098335
+        <a href={TEL_HREF} className="flex items-center gap-1.5 text-sm font-medium text-foreground hover:text-accent transition-colors">
+            <Phone size={14} /> {PHONE_DISPLAY}
         </a>
         <a
             href={homeAnchor("contacto")}
@@ -53,7 +54,12 @@ export default function Navbar({
         </a>
         </div>
 
-        <button onClick={() => setMenuOpen(!menuOpen)} className="lg:hidden text-foreground">
+        <button
+        onClick={() => setMenuOpen(!menuOpen)}
+        className="lg:hidden text-foreground"
+        aria-label={menuOpen ? "Cerrar menú" : "Abrir menú"}
+        aria-expanded={menuOpen}
+        >
         {menuOpen ? <X size={22} /> : <Menu size={22} />}
         </button>
     </div>
@@ -72,7 +78,7 @@ export default function Navbar({
             )
         )}
         <div className="flex gap-3 pt-2">
-            <a href="tel:+34743098335" className="flex-1 py-2.5 rounded-full border border-border text-center text-sm font-medium flex items-center justify-center gap-1.5">
+            <a href={TEL_HREF} className="flex-1 py-2.5 rounded-full border border-border text-center text-sm font-medium flex items-center justify-center gap-1.5">
             <Phone size={13} /> Llamar
             </a>
             <a href={homeAnchor("contacto")} onClick={() => setMenuOpen(false)} className="flex-1 py-2.5 rounded-full bg-accent text-white text-center text-sm font-semibold">

@@ -4,7 +4,11 @@
   "version": "0.0.1",
   "type": "module",
   "scripts": {
-    "build": "vite build && cp docs/index.html docs/404.html",
+    "build": "npm run typecheck && npm run build:client && npm run build:ssr && npm run prerender",
+    "typecheck": "tsc --noEmit",
+    "build:client": "vite build",
+    "build:ssr": "vite build --ssr src/entry-server.tsx --outDir .ssr-tmp",
+    "prerender": "node scripts/prerender.mjs",
     "dev": "vite",
     "preview": "vite preview"
   },
@@ -70,9 +74,11 @@
   "devDependencies": {
     "@tailwindcss/vite": "4.1.12",
     "@types/node": "^26.1.2",
-    "@types/react-dom": "^19.2.3",
+    "@types/react": "^18.3.31",
+    "@types/react-dom": "^18.3.7",
     "@vitejs/plugin-react": "4.7.0",
     "tailwindcss": "4.1.12",
+    "typescript": "~5.9",
     "vite": "6.3.5"
   },
   "peerDependencies": {

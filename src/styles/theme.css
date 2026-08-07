@@ -13,9 +13,11 @@
   --secondary: #F4F6F8;
   --secondary-foreground: #0D1B2A;
   --muted: #F4F6F8;
-  --muted-foreground: #6B7A8D;
+  --muted-foreground: #5A687A;
   --accent: #00A86B;
   --accent-foreground: #FFFFFF;
+  --accent-deep: #0A7C4F;
+  --accent-deep-foreground: #FFFFFF;
   --destructive: #d4183d;
   --destructive-foreground: #ffffff;
   --border: #E5E7EB;
@@ -56,6 +58,8 @@
   --muted-foreground: oklch(0.708 0 0);
   --accent: oklch(0.269 0 0);
   --accent-foreground: oklch(0.985 0 0);
+  --accent-deep: oklch(0.269 0 0);
+  --accent-deep-foreground: oklch(0.985 0 0);
   --destructive: oklch(0.396 0.141 25.723);
   --destructive-foreground: oklch(0.637 0.237 25.331);
   --border: oklch(0.269 0 0);
@@ -93,6 +97,8 @@
   --color-muted-foreground: var(--muted-foreground);
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
+  --color-accent-deep: var(--accent-deep);
+  --color-accent-deep-foreground: var(--accent-deep-foreground);
   --color-destructive: var(--destructive);
   --color-destructive-foreground: var(--destructive-foreground);
   --color-border: var(--border);
@@ -127,11 +133,6 @@
   body {
     @apply bg-background text-foreground;
   }
-
-  /**
-  * Default typography styles for HTML elements (h1-h4, p, label, button, input).
-  * These are in @layer base, so Tailwind utility classes (like text-sm, text-lg) automatically override them.
-  */
 
   html {
     font-size: var(--font-size);

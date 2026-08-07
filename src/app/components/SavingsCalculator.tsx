@@ -120,10 +120,11 @@ export default function Calculator() {
         <div className="overflow-hidden">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
             <div>
-              <label className="block text-xs font-medium text-muted-foreground mb-2 uppercase tracking-wide">
+              <label htmlFor="calc-factura" className="block text-xs font-medium text-muted-foreground mb-2 uppercase tracking-wide">
                 Factura promedio mensual (€)
               </label>
               <input
+                id="calc-factura"
                 type="number"
                 min={30}
                 max={2000}
@@ -133,10 +134,11 @@ export default function Calculator() {
               />
             </div>
             <div>
-              <label className="block text-xs font-medium text-muted-foreground mb-2 uppercase tracking-wide">
+              <label htmlFor="calc-provincia" className="block text-xs font-medium text-muted-foreground mb-2 uppercase tracking-wide">
                 Provincia
               </label>
               <select
+                id="calc-provincia"
                 value={provincia}
                 onChange={(e) => setProvincia(e.target.value)}
                 className="w-full px-4 py-3 rounded-xl border border-border bg-secondary text-foreground text-sm focus:outline-none focus:border-accent transition-colors"
@@ -153,7 +155,7 @@ export default function Calculator() {
                 type="checkbox"
                 checked={incluyeBateriaFisica}
                 onChange={(e) => setIncluyeBateriaFisica(e.target.checked)}
-                className="w-4 h-4 rounded border-border text-accent focus:ring-accent"
+                className="mt-0.5 w-4 h-4 accent-accent flex-shrink-0"
               />
               <span className="text-muted-foreground text-xs md:text-sm font-medium">
                 Incluir batería física de almacenamiento (acumula energía para la noche)
@@ -167,7 +169,7 @@ export default function Calculator() {
                 type="checkbox"
                 checked={incluyeBateriaVirtual}
                 onChange={(e) => setIncluyeBateriaVirtual(e.target.checked)}
-                className="w-4 h-4 rounded border-border text-accent focus:ring-accent"
+                className="mt-0.5 w-4 h-4 accent-accent flex-shrink-0"
               />
               <span className="text-muted-foreground text-xs md:text-sm font-medium">
                 Aprovechar Monedero / Batería Virtual (inyecta sobrantes a la red)

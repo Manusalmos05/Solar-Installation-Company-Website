@@ -25,7 +25,7 @@
 
 .article-content .article-lead {
   font-size: 1.1875rem;
-  color: var(--muted-foreground, #6b7a8d);
+  color: var(--muted-foreground, #5a687a);
 }
 
 .article-content a {
@@ -71,7 +71,7 @@
   margin-top: 0.625rem;
   text-align: center;
   font-size: 0.875rem;
-  color: var(--muted-foreground, #6b7a8d);
+  color: var(--muted-foreground, #5a687a);
 }
 
 .article-video {
